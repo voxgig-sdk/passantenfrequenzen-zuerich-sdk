@@ -1,0 +1,359 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Passantenfrequenzen Zürich",
+    "description": "Dieses API ermöglicht den Zugriff auf Daten zu Passantenfrequenzen an verschiedenen Standorten in Zürich. Die Messungen werden stündlich aktualisiert und umfassen Informationen über die Anzahl der Passanten, unterteilt nach Zonen, Geschlecht und Laufrichtung sowie Wetterdaten.",
+    "version": "1.0",
+    "contact": {
+      "name": "Open Data Zürich",
+      "url": "https://data.stadt-zuerich.ch"
+    },
+    "license": {
+      "name": "Creative Commons Attribution",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://data.stadt-zuerich.ch",
+      "description": "Open Data Zürich Production Server"
+    }
+  ],
+  "paths": {
+    "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json": {
+      "get": {
+        "summary": "Standorte der Messgebiete",
+        "description": "Gibt die geografischen Standorte der Messgebiete zurück. Die Daten sind im GeoJSON-Format mit WGS84 (EPSG:4326) Projektion. Beinhaltet Informationen zu den Messgebieten: Bahnhofstrasse (Nord), Bahnhofstrasse (Mitte), Bahnhofstrasse (Süd) und Lintheschergasse.",
+        "operationId": "getLocations",
+        "tags": [
+          "Standorte"
+        ],
+        "responses": {
+          "200": {
+            "description": "Erfolgreiche Antwort mit Standortdaten",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "FeatureCollection"
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "example": "Feature"
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "example": "Point"
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                },
+                                "minItems": 2,
+                                "maxItems": 2
+                              }
+                            }
+                          },
+                          "properties": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "Name des Messgebiets",
+                                "example": "Bahnhofstrasse (Nord)"
+                              },
+                              "location_id": {
+                                "type": "string",
+                                "description": "Eindeutige ID des Standorts"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Ressource nicht gefunden"
+          },
+          "500": {
+            "description": "Interner Serverfehler"
+          }
+        }
+      }
+    },
+    "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv": {
+      "get": {
+        "summary": "Passantenfrequenzen seit 2021",
+        "description": "Gibt stündlich aktualisierte Passantenfrequenzen seit Juni 2021 zurück. Die Daten umfassen Anzahl der Passanten unterteilt nach Messgebieten, Zonen (1-3, 99), Altersgruppe (Erwachsene/Kinder), Laufrichtung (Bürkliplatz/Hauptbahnhof) sowie Wetter- und Temperaturdaten. Zeitangaben sind in UTC im ISO 8601 Format. Hinweis: Daten vor dem 03.03.2022 können Inkonsistenzen aufweisen (Testbetrieb).",
+        "operationId": "getPedestrianFrequencies",
+        "tags": [
+          "Frequenzen"
+        ],
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Startdatum für den Abfragezeitraum (ISO 8601 Format, UTC)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2023-01-01T00:00:00Z"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "Enddatum für den Abfragezeitraum (ISO 8601 Format, UTC)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2023-12-31T23:59:59Z"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Filtert nach spezifischem Messgebiet",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Bahnhofstrasse (Nord)",
+                "Bahnhofstrasse (Mitte)",
+                "Bahnhofstrasse (Süd)",
+                "Lintheschergasse"
+              ]
+            }
+          },
+          {
+            "name": "zone",
+            "in": "query",
+            "description": "Filtert nach Zone (1, 2, 3 oder 99 für nicht zuordenbar)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                2,
+                3,
+                99
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Erfolgreiche Antwort mit Frequenzdaten",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string",
+                  "description": "CSV-Datei mit Passantenfrequenzen"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Zeitpunkt der Messung in UTC (ISO 8601)",
+                        "example": "2023-06-15T14:00:00Z"
+                      },
+                      "location": {
+                        "type": "string",
+                        "description": "Name des Messgebiets",
+                        "example": "Bahnhofstrasse (Nord)"
+                      },
+                      "zone": {
+                        "type": "integer",
+                        "description": "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)",
+                        "example": 1
+                      },
+                      "direction": {
+                        "type": "string",
+                        "description": "Laufrichtung der Passanten",
+                        "enum": [
+                          "Bürkliplatz",
+                          "Hauptbahnhof"
+                        ],
+                        "example": "Hauptbahnhof"
+                      },
+                      "age_group": {
+                        "type": "string",
+                        "description": "Altersgruppe",
+                        "enum": [
+                          "Erwachsene",
+                          "Kinder"
+                        ],
+                        "example": "Erwachsene"
+                      },
+                      "count": {
+                        "type": "integer",
+                        "description": "Anzahl gezählter Passanten",
+                        "example": 245
+                      },
+                      "weather": {
+                        "type": "string",
+                        "description": "Wetterbedingungen während der Messung",
+                        "example": "sonnig"
+                      },
+                      "temperature": {
+                        "type": "number",
+                        "description": "Temperatur in Grad Celsius",
+                        "example": 22.5
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ungültige Anfrageparameter"
+          },
+          "404": {
+            "description": "Ressource nicht gefunden"
+          },
+          "500": {
+            "description": "Interner Serverfehler"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Location": {
+        "type": "object",
+        "description": "Geografischer Standort eines Messgebiets",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "Feature"
+          },
+          "geometry": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "Point"
+              },
+              "coordinates": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2,
+                "description": "Koordinaten im WGS84 Format [longitude, latitude]"
+              }
+            }
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name des Messgebiets"
+              },
+              "location_id": {
+                "type": "string",
+                "description": "Eindeutige ID des Standorts"
+              }
+            }
+          }
+        }
+      },
+      "FrequencyRecord": {
+        "type": "object",
+        "description": "Einzelner Frequenzmesswert",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Zeitpunkt der Messung in UTC (ISO 8601)"
+          },
+          "location": {
+            "type": "string",
+            "description": "Name des Messgebiets"
+          },
+          "zone": {
+            "type": "integer",
+            "description": "Zone (1-3, 99 für nicht zuordenbar)"
+          },
+          "direction": {
+            "type": "string",
+            "description": "Laufrichtung",
+            "enum": [
+              "Bürkliplatz",
+              "Hauptbahnhof"
+            ]
+          },
+          "age_group": {
+            "type": "string",
+            "description": "Altersgruppe",
+            "enum": [
+              "Erwachsene",
+              "Kinder"
+            ]
+          },
+          "count": {
+            "type": "integer",
+            "description": "Anzahl gezählter Passanten",
+            "minimum": 0
+          },
+          "weather": {
+            "type": "string",
+            "description": "Wetterbedingungen"
+          },
+          "temperature": {
+            "type": "number",
+            "description": "Temperatur in Grad Celsius"
+          }
+        },
+        "required": [
+          "timestamp",
+          "location",
+          "zone",
+          "count"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Standorte",
+      "description": "Operationen für Messgebiete und deren geografische Standorte"
+    },
+    {
+      "name": "Frequenzen",
+      "description": "Operationen für Passantenfrequenzdaten"
+    }
+  ],
+  "externalDocs": {
+    "description": "Weitere Informationen und Dokumentation",
+    "url": "https://data.stadt-zuerich.ch/dataset/hystreet_fussgaengerfrequenzen"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "standorte": {
+      "STANDORTE00": {
+        "geometry": {},
+        "property": {},
+        "type": "s20"
+      },
+      "STANDORTE01": {
+        "geometry": {},
+        "property": {},
+        "type": "s3e"
+      },
+      "STANDORTE02": {
+        "geometry": {},
+        "property": {},
+        "type": "s5c"
+      }
+    }
+  },
+  "new": {
+    "standorte": {
+      "standorte_ref01": {
+        "geometry": {},
+        "property": {},
+        "type": "s7a"
+      }
+    }
+  }
+}

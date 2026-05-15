@@ -1,0 +1,50 @@
+# Entity: standorte
+
+main: kit: entity: standorte: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "geometry"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "property"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "standorte"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json"
+          parts: [
+            "dataset"
+            "hystreet_fussgaengerfrequenzen"
+            "download"
+            "hystreet_locations.json"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

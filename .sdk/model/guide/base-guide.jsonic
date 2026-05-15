@@ -1,0 +1,20 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 2
+  metrics: count: method: 2
+
+  entity: frequenzen: {
+    path: "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: standorte: {
+    path: "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json": {
+      op: list: method: *GET
+    }
+  }
+
+}

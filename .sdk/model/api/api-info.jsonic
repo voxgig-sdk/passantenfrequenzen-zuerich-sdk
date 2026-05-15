@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Open Data Zürich"
+        url: "https://data.stadt-zuerich.ch"
+      }
+      description: "Dieses API ermöglicht den Zugriff auf Daten zu Passantenfrequenzen an verschiedenen Standorten in Zürich. Die Messungen werden stündlich aktualisiert und umfassen Informationen über die Anzahl der Passanten, unterteilt nach Zonen, Geschlecht und Laufrichtung sowie Wetterdaten."
+      license: {
+        name: "Creative Commons Attribution"
+        url: "https://creativecommons.org/licenses/by/4.0/"
+      }
+      servers: [
+        {
+          description: "Open Data Zürich Production Server"
+          url: "https://data.stadt-zuerich.ch"
+        }
+      ]
+      title: "Passantenfrequenzen Zürich"
+      version: "1.0"
+    }
+  }
+}
+
+}

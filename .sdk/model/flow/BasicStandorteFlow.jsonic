@@ -1,0 +1,22 @@
+# BasicStandorteFlow
+
+main: kit: flow: BasicStandorteFlow:
+{
+  entity: "standorte",
+  kind: "basic",
+  name: "BasicStandorteFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "standorte_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStandorteFlow"
+}

@@ -1,0 +1,117 @@
+# Entity: frequenzen
+
+main: kit: entity: frequenzen: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age_group"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "direction"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "location"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "temperature"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "weather"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "zone"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "frequenzen"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "2023-12-31T23:59:59Z"
+                kind: "query"
+                name: "end_date"
+                orig: "end_date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "location"
+                orig: "location"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "2023-01-01T00:00:00Z"
+                kind: "query"
+                name: "start_date"
+                orig: "start_date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "zone"
+                orig: "zone"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv"
+          parts: [
+            "dataset"
+            "hystreet_fussgaengerfrequenzen"
+            "download"
+            "hystreet_fussgaengerfrequenzen_seit2021.csv"
+          ]
+          select: {
+            exist: [
+              "end_date"
+              "location"
+              "start_date"
+              "zone"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,50 @@
+{
+  "existing": {
+    "frequenzen": {
+      "FREQUENZEN00": {
+        "age_group": "s50",
+        "count": "s51",
+        "direction": "s52",
+        "location": "s53",
+        "temperature": 84,
+        "timestamp": "s55",
+        "weather": "s56",
+        "zone": "s57"
+      },
+      "FREQUENZEN01": {
+        "age_group": "sa0",
+        "count": "sa1",
+        "direction": "sa2",
+        "location": "sa3",
+        "temperature": 164,
+        "timestamp": "sa5",
+        "weather": "sa6",
+        "zone": "sa7"
+      },
+      "FREQUENZEN02": {
+        "age_group": "sf0",
+        "count": "sf1",
+        "direction": "sf2",
+        "location": "sf3",
+        "temperature": 244,
+        "timestamp": "sf5",
+        "weather": "sf6",
+        "zone": "sf7"
+      }
+    }
+  },
+  "new": {
+    "frequenzen": {
+      "frequenzen_ref01": {
+        "age_group": "s140",
+        "count": "s141",
+        "direction": "s142",
+        "location": "s143",
+        "temperature": 324,
+        "timestamp": "s145",
+        "weather": "s146",
+        "zone": "s147"
+      }
+    }
+  }
+}
