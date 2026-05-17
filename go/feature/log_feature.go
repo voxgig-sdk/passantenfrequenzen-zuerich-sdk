@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/core"
+	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go/core"
 )
 
 type LogFeature struct {

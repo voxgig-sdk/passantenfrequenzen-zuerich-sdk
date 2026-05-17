@@ -1,10 +1,10 @@
 package voxgigpassantenfrequenzenzuerichsdk
 
 import (
-	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/core"
-	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/entity"
-	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/feature"
-	_ "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/utility"
+	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go/core"
+	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go/entity"
+	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go/feature"
+	_ "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

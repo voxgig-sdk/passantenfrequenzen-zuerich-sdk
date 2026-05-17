@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk"
-	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/core"
+	sdk "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go"
+	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go/utility/struct"
 )
 
 func TestFrequenzenEntity(t *testing.T) {

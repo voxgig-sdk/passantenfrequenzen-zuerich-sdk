@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk"
-	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/core"
+	sdk "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go"
+	"github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go/core"
 )
 
 func TestStandorteDirect(t *testing.T) {

@@ -12,9 +12,9 @@ import (
 	"sync"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk"
+	sdk "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go/utility/struct"
 )
 
 var envLocalOnce sync.Once
