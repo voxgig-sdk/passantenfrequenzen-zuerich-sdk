@@ -92,7 +92,6 @@ function frequenzen_basic_setup(extra)
     ["PASSANTENFREQUENZENZUERICH_TEST_FREQUENZEN_ENTID"] = idmap,
     ["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] = "FALSE",
     ["PASSANTENFREQUENZENZUERICH_TEST_EXPLAIN"] = "FALSE",
-    ["PASSANTENFREQUENZENZUERICH_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function frequenzen_basic_setup(extra)
   if env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["PASSANTENFREQUENZENZUERICH_APIKEY"],
       },
       extra or {},
     })

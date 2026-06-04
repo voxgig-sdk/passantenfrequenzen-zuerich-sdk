@@ -63,14 +63,12 @@ function standorte_direct_setup(mockres)
   local env = runner.env_override({
     ["PASSANTENFREQUENZENZUERICH_TEST_STANDORTE_ENTID"] = {},
     ["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] = "FALSE",
-    ["PASSANTENFREQUENZENZUERICH_APIKEY"] = "NONE",
   })
 
   local live = env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["PASSANTENFREQUENZENZUERICH_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

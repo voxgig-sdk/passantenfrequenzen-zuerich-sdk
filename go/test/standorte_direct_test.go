@@ -93,14 +93,12 @@ func standorteDirectSetup(mockres any) *standorteDirectSetupResult {
 	env := envOverride(map[string]any{
 		"PASSANTENFREQUENZENZUERICH_TEST_STANDORTE_ENTID": map[string]any{},
 		"PASSANTENFREQUENZENZUERICH_TEST_LIVE":    "FALSE",
-		"PASSANTENFREQUENZENZUERICH_APIKEY":       "NONE",
 	})
 
 	live := env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["PASSANTENFREQUENZENZUERICH_APIKEY"],
 		}
 		client := sdk.NewPassantenfrequenzenZuerichSDK(mergedOpts)
 

@@ -21,8 +21,31 @@ main: {
       ]
       title: "Passantenfrequenzen Zürich"
       version: "1.0"
+      tagline: "Hourly pedestrian counts on Zurich's Bahnhofstrasse, broken down by zone, direction and weather conditions"
+      homepage: "https://data.stadt-zuerich.ch/dataset/hystreet_fussgaengerfrequenzen"
+      docs_url: "https://data.stadt-zuerich.ch/dataset/hystreet_fussgaengerfrequenzen"
+      license_short: "Creative Commons Attribution (CC-BY) - credit Stadt Zürich"
+      license_md: `- Data is published under Creative Commons Attribution (CC-BY).
+- You must credit the City of Zurich (Stadt Zürich) when using or redistributing the data.
+- Raw measurements are supplied by hystreet.com GmbH; check their terms if you query their service directly.
+- Data has been collected since June 2021 and is refreshed hourly.`
+      about_md: `Passantenfrequenzen Zürich exposes pedestrian-count measurements published on the [City of Zurich Open Data portal](https://data.stadt-zuerich.ch). The dataset is curated by Stadt Zürich's urban development team, with raw counts produced by laser-scanner sensors operated by hystreet.com GmbH along Bahnhofstrasse and adjacent streets.
+
+What you get from the API:
+
+- Hourly pedestrian counts per measurement location
+- Breakdown by zone (sidewalk sides, street centre, and an "unclassifiable" zone 99)
+- Direction of travel (toward Bürkliplatz vs. Hauptbahnhof)
+- Demographic split between adults and children
+- Weather and temperature observations recorded at the same timestamp
+- Location metadata with WGS84 coordinates for each sensor area
+
+Measurement coverage is focused on four areas: Bahnhofstrasse North, Middle and South, plus Lintheschergasse. Collection has been ongoing since June 2021 and updates run hourly. CORS is not enabled on the upstream service, so browser-side calls may need a proxy.`
+      entity_desc: {
+        frequenzen: "Hourly pedestrian-count records per location and zone, including direction of travel, adult/child split, and concurrent weather and temperature readings."
+        standorte: "Measurement locations along Bahnhofstrasse and Lintheschergasse, each split into zones with WGS84 geometries describing where pedestrians were counted."
+      }
+      auth: false
     }
   }
-}
-
 }

@@ -62,14 +62,12 @@ def frequenzen_direct_setup(mockres)
   env = Runner.env_override({
     "PASSANTENFREQUENZENZUERICH_TEST_FREQUENZEN_ENTID" => {},
     "PASSANTENFREQUENZENZUERICH_TEST_LIVE" => "FALSE",
-    "PASSANTENFREQUENZENZUERICH_APIKEY" => "NONE",
   })
 
   live = env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["PASSANTENFREQUENZENZUERICH_APIKEY"],
     }
     client = PassantenfrequenzenZuerichSDK.new(merged_opts)
     return {
