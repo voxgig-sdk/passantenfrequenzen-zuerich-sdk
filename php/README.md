@@ -10,7 +10,7 @@ The PHP SDK for the PassantenfrequenzenZuerich API — an entity-oriented client
 
 ## Install
 ```bash
-composer require voxgig/passantenfrequenzen-zuerich-sdk
+composer require voxgig-sdk/passantenfrequenzen-zuerich
 ```
 
 

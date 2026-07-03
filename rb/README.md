@@ -10,13 +10,13 @@ The Ruby SDK for the PassantenfrequenzenZuerich API — an entity-oriented clien
 
 ## Install
 ```bash
-gem install passantenfrequenzen-zuerich-sdk
+gem install voxgig-sdk-passantenfrequenzen-zuerich
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "passantenfrequenzen-zuerich-sdk"
+gem "voxgig-sdk-passantenfrequenzen-zuerich"
 ```
 
 Then run:

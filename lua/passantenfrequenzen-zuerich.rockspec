@@ -8,12 +8,14 @@ source = {
   dir = "passantenfrequenzen-zuerich-sdk/lua"
 }
 description = {
-  summary = "PassantenfrequenzenZuerich SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Passantenfrequenzen Zürich public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk",
+  issues_url = "https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "passantenfrequenzen-zuerich" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

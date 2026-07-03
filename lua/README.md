@@ -10,7 +10,7 @@ The Lua SDK for the PassantenfrequenzenZuerich API — an entity-oriented client
 
 ## Install
 ```bash
-luarocks install passantenfrequenzen-zuerich-sdk
+luarocks install voxgig-sdk-passantenfrequenzen-zuerich
 ```
 
 If the module is not yet published, add the source directory to

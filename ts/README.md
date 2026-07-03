@@ -10,7 +10,7 @@ The TypeScript SDK for the PassantenfrequenzenZuerich API — a type-safe, entit
 
 ## Install
 ```bash
-npm install passantenfrequenzen-zuerich
+npm install @voxgig-sdk/passantenfrequenzen-zuerich
 ```
 ## Tutorial: your first API call
 

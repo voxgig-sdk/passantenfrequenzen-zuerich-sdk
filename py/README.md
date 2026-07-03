@@ -10,7 +10,7 @@ The Python SDK for the PassantenfrequenzenZuerich API — an entity-oriented cli
 
 ## Install
 ```bash
-pip install passantenfrequenzen-zuerich-sdk
+pip install voxgig-sdk-passantenfrequenzen-zuerich
 ```
 
 Or install from source:
