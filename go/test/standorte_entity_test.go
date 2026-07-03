@@ -119,6 +119,7 @@ func standorteBasicSetup(extra map[string]any) *entityTestSetup {
 		"PASSANTENFREQUENZENZUERICH_TEST_STANDORTE_ENTID": idmap,
 		"PASSANTENFREQUENZENZUERICH_TEST_LIVE":      "FALSE",
 		"PASSANTENFREQUENZENZUERICH_TEST_EXPLAIN":   "FALSE",
+		"PASSANTENFREQUENZENZUERICH_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["PASSANTENFREQUENZENZUERICH_TEST_STANDORTE_ENTID"])
@@ -129,6 +130,7 @@ func standorteBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["PASSANTENFREQUENZENZUERICH_APIKEY"],
 			},
 			extra,
 		})

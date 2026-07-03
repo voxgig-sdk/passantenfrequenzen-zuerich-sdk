@@ -86,6 +86,7 @@ function standorte_basic_setup($extra)
         "PASSANTENFREQUENZENZUERICH_TEST_STANDORTE_ENTID" => $idmap,
         "PASSANTENFREQUENZENZUERICH_TEST_LIVE" => "FALSE",
         "PASSANTENFREQUENZENZUERICH_TEST_EXPLAIN" => "FALSE",
+        "PASSANTENFREQUENZENZUERICH_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,6 +98,7 @@ function standorte_basic_setup($extra)
     if ($env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["PASSANTENFREQUENZENZUERICH_APIKEY"],
             ],
             $extra ?? [],
         ]);

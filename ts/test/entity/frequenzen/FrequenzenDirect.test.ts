@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'PASSANTENFREQUENZENZUERICH_TEST_FREQUENZEN_ENTID': {},
     'PASSANTENFREQUENZENZUERICH_TEST_LIVE': 'FALSE',
+    'PASSANTENFREQUENZENZUERICH_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.PASSANTENFREQUENZENZUERICH_TEST_LIVE
 
   if (live) {
     const client = new PassantenfrequenzenZuerichSDK({
+      apikey: env.PASSANTENFREQUENZENZUERICH_APIKEY,
     })
 
     let idmap: any = env['PASSANTENFREQUENZENZUERICH_TEST_FREQUENZEN_ENTID']

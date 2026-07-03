@@ -1,23 +1,8 @@
 # PassantenfrequenzenZuerich SDK
 
-Hourly pedestrian counts on Zurich's Bahnhofstrasse, broken down by zone, direction and weather conditions
+Passantenfrequenzen Zürich client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Passantenfrequenzen Zürich
-
-Passantenfrequenzen Zürich exposes pedestrian-count measurements published on the [City of Zurich Open Data portal](https://data.stadt-zuerich.ch). The dataset is curated by Stadt Zürich's urban development team, with raw counts produced by laser-scanner sensors operated by hystreet.com GmbH along Bahnhofstrasse and adjacent streets.
-
-What you get from the API:
-
-- Hourly pedestrian counts per measurement location
-- Breakdown by zone (sidewalk sides, street centre, and an "unclassifiable" zone 99)
-- Direction of travel (toward Bürkliplatz vs. Hauptbahnhof)
-- Demographic split between adults and children
-- Weather and temperature observations recorded at the same timestamp
-- Location metadata with WGS84 coordinates for each sensor area
-
-Measurement coverage is focused on four areas: Bahnhofstrasse North, Middle and South, plus Lintheschergasse. Collection has been ongoing since June 2021 and updates run hourly. CORS is not enabled on the upstream service, so browser-side calls may need a proxy.
 
 ## Try it
 
@@ -51,29 +36,31 @@ gem install passantenfrequenzen-zuerich-sdk
 luarocks install passantenfrequenzen-zuerich-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { PassantenfrequenzenZuerichSDK } from 'passantenfrequenzen-zuerich'
 
-const client = new PassantenfrequenzenZuerichSDK({})
+const client = new PassantenfrequenzenZuerichSDK({
+  apikey: process.env.PASSANTENFREQUENZEN-ZUERICH_APIKEY,
+})
 
 // List all frequenzens
 const frequenzens = await client.Frequenzen().list()
+console.log(frequenzens.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Frequenzen** | Hourly pedestrian-count records per location and zone, including direction of travel, adult/child split, and concurrent weather and temperature readings. | `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv` |
-| **Standorte** | Measurement locations along Bahnhofstrasse and Lintheschergasse, each split into zones with WGS84 geometries describing where pedestrians were counted. | `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json` |
+| **Frequenzen** |  | `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv` |
+| **Standorte** |  | `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -114,12 +101,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from passantenfrequenzenzuerich_sdk import PassantenfrequenzenZuerichSDK
 
-client = PassantenfrequenzenZuerichSDK({})
+client = PassantenfrequenzenZuerichSDK({
+    "apikey": os.environ.get("PASSANTENFREQUENZEN-ZUERICH_APIKEY"),
+})
 
 # List all frequenzens
-frequenzens, err = client.Frequenzen(None).list(None, None)
+frequenzens, err = client.Frequenzen().list()
+print(frequenzens)
 ```
 
 ### PHP
@@ -128,10 +119,13 @@ frequenzens, err = client.Frequenzen(None).list(None, None)
 <?php
 require_once 'passantenfrequenzenzuerich_sdk.php';
 
-$client = new PassantenfrequenzenZuerichSDK([]);
+$client = new PassantenfrequenzenZuerichSDK([
+    "apikey" => getenv("PASSANTENFREQUENZEN-ZUERICH_APIKEY"),
+]);
 
 // List all frequenzens
-[$frequenzens, $err] = $client->Frequenzen(null)->list(null, null);
+[$frequenzens, $err] = $client->Frequenzen()->list();
+print_r($frequenzens);
 ```
 
 ### Golang
@@ -139,10 +133,13 @@ $client = new PassantenfrequenzenZuerichSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go"
 
-client := sdk.NewPassantenfrequenzenZuerichSDK(map[string]any{})
+client := sdk.NewPassantenfrequenzenZuerichSDK(map[string]any{
+    "apikey": os.Getenv("PASSANTENFREQUENZEN-ZUERICH_APIKEY"),
+})
 
 // List all frequenzens
 frequenzens, err := client.Frequenzen(nil).List(nil, nil)
+fmt.Println(frequenzens)
 ```
 
 ### Ruby
@@ -150,10 +147,13 @@ frequenzens, err := client.Frequenzen(nil).List(nil, nil)
 ```ruby
 require_relative "PassantenfrequenzenZuerich_sdk"
 
-client = PassantenfrequenzenZuerichSDK.new({})
+client = PassantenfrequenzenZuerichSDK.new({
+  "apikey" => ENV["PASSANTENFREQUENZEN-ZUERICH_APIKEY"],
+})
 
 # List all frequenzens
-frequenzens, err = client.Frequenzen(nil).list(nil, nil)
+frequenzens, err = client.Frequenzen().list
+puts frequenzens
 ```
 
 ### Lua
@@ -161,10 +161,13 @@ frequenzens, err = client.Frequenzen(nil).list(nil, nil)
 ```lua
 local sdk = require("passantenfrequenzen-zuerich_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("PASSANTENFREQUENZEN-ZUERICH_APIKEY"),
+})
 
 -- List all frequenzens
-local frequenzens, err = client:Frequenzen(nil):list(nil, nil)
+local frequenzens, err = client:Frequenzen():list()
+print(frequenzens)
 ```
 
 ## Unit testing in offline mode
@@ -183,25 +186,21 @@ const result = await client.Frequenzen().load({ id: 'test01' })
 ### Python
 
 ```python
-client = PassantenfrequenzenZuerichSDK.test(None, None)
-result, err = client.Frequenzen(None).load(
-    {"id": "test01"}, None
-)
+client = PassantenfrequenzenZuerichSDK.test()
+result, err = client.Frequenzen().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = PassantenfrequenzenZuerichSDK::test(null, null);
-[$result, $err] = $client->Frequenzen(null)->load(
-    ["id" => "test01"], null
-);
+$client = PassantenfrequenzenZuerichSDK::test();
+[$result, $err] = $client->Frequenzen()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Frequenzen(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -210,19 +209,15 @@ result, err := client.Frequenzen(nil).Load(
 ### Ruby
 
 ```ruby
-client = PassantenfrequenzenZuerichSDK.test(nil, nil)
-result, err = client.Frequenzen(nil).load(
-  { "id" => "test01" }, nil
-)
+client = PassantenfrequenzenZuerichSDK.test
+result, err = client.Frequenzen().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Frequenzen(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Frequenzen():load({ id = "test01" })
 ```
 
 ## How it works
@@ -326,15 +321,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Passantenfrequenzen Zürich
-
-- Upstream: [https://data.stadt-zuerich.ch/dataset/hystreet_fussgaengerfrequenzen](https://data.stadt-zuerich.ch/dataset/hystreet_fussgaengerfrequenzen)
-
-- Data is published under Creative Commons Attribution (CC-BY).
-- You must credit the City of Zurich (Stadt Zürich) when using or redistributing the data.
-- Raw measurements are supplied by hystreet.com GmbH; check their terms if you query their service directly.
-- Data has been collected since June 2021 and is refreshed hourly.
 
 ---
 

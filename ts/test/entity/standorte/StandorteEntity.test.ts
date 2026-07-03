@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'PASSANTENFREQUENZEN_ZUERICH_TEST_STANDORTE_ENTID': idmap,
     'PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE': 'FALSE',
     'PASSANTENFREQUENZEN_ZUERICH_TEST_EXPLAIN': 'FALSE',
+    'PASSANTENFREQUENZEN_ZUERICH_APIKEY': 'NONE',
   })
 
   idmap = env['PASSANTENFREQUENZEN_ZUERICH_TEST_STANDORTE_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new PassantenfrequenzenZuerichSDK(merge([
       {
+        apikey: env.PASSANTENFREQUENZEN_ZUERICH_APIKEY,
       },
       extra
     ]))

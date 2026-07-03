@@ -61,12 +61,14 @@ def _standorte_direct_setup(mockres):
     env = runner.env_override({
         "PASSANTENFREQUENZENZUERICH_TEST_STANDORTE_ENTID": {},
         "PASSANTENFREQUENZENZUERICH_TEST_LIVE": "FALSE",
+        "PASSANTENFREQUENZENZUERICH_APIKEY": "NONE",
     })
 
     live = env.get("PASSANTENFREQUENZENZUERICH_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("PASSANTENFREQUENZENZUERICH_APIKEY"),
         }
         client = PassantenfrequenzenZuerichSDK(merged_opts)
         return {

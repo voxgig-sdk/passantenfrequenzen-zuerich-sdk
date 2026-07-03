@@ -1,45 +1,13 @@
 {
-  "name": "passantenfrequenzen-zuerich",
-  "origin": "voxgig-sdk",
   "def": "passantenfrequenzen-zuerich_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "contact": {
-          "name": "Open Data Zürich",
-          "url": "https://data.stadt-zuerich.ch"
-        },
-        "description": "Dieses API ermöglicht den Zugriff auf Daten zu Passantenfrequenzen an verschiedenen Standorten in Zürich. Die Messungen werden stündlich aktualisiert und umfassen Informationen über die Anzahl der Passanten, unterteilt nach Zonen, Geschlecht und Laufrichtung sowie Wetterdaten.",
-        "license": {
-          "name": "Creative Commons Attribution",
-          "url": "https://creativecommons.org/licenses/by/4.0/"
-        },
-        "servers": [
-          {
-            "description": "Open Data Zürich Production Server",
-            "url": "https://data.stadt-zuerich.ch"
-          }
-        ],
-        "title": "Passantenfrequenzen Zürich",
-        "version": "1.0",
-        "tagline": "Hourly pedestrian counts on Zurich's Bahnhofstrasse, broken down by zone, direction and weather conditions",
-        "homepage": "https://data.stadt-zuerich.ch/dataset/hystreet_fussgaengerfrequenzen",
-        "docs_url": "https://data.stadt-zuerich.ch/dataset/hystreet_fussgaengerfrequenzen",
-        "license_short": "Creative Commons Attribution (CC-BY) - credit Stadt Zürich",
-        "license_md": "- Data is published under Creative Commons Attribution (CC-BY).\n- You must credit the City of Zurich (Stadt Zürich) when using or redistributing the data.\n- Raw measurements are supplied by hystreet.com GmbH; check their terms if you query their service directly.\n- Data has been collected since June 2021 and is refreshed hourly.",
-        "about_md": "Passantenfrequenzen Zürich exposes pedestrian-count measurements published on the [City of Zurich Open Data portal](https://data.stadt-zuerich.ch). The dataset is curated by Stadt Zürich's urban development team, with raw counts produced by laser-scanner sensors operated by hystreet.com GmbH along Bahnhofstrasse and adjacent streets.\n\nWhat you get from the API:\n\n- Hourly pedestrian counts per measurement location\n- Breakdown by zone (sidewalk sides, street centre, and an \"unclassifiable\" zone 99)\n- Direction of travel (toward Bürkliplatz vs. Hauptbahnhof)\n- Demographic split between adults and children\n- Weather and temperature observations recorded at the same timestamp\n- Location metadata with WGS84 coordinates for each sensor area\n\nMeasurement coverage is focused on four areas: Bahnhofstrasse North, Middle and South, plus Lintheschergasse. Collection has been ongoing since June 2021 and updates run hourly. CORS is not enabled on the upstream service, so browser-side calls may need a proxy.",
-        "entity_desc": {
-          "frequenzen": "Hourly pedestrian-count records per location and zone, including direction of travel, adult/child split, and concurrent weather and temperature readings.",
-          "standorte": "Measurement locations along Bahnhofstrasse and Lintheschergasse, each split into zones with WGS84 geometries describing where pedestrians were counted."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -48,104 +16,110 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "frequenzen": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "age_group",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "count",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "direction",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "location",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "temperature",
               "req": false,
-              "type": "`$NUMBER`",
-              "active": true
+              "type": "`$NUMBER`"
             },
             {
+              "active": true,
               "name": "timestamp",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "weather",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "zone",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             }
           ],
           "name": "frequenzen",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "example": "2023-12-31T23:59:59Z",
                         "kind": "query",
                         "name": "end_date",
                         "orig": "end_date",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "location",
                         "orig": "location",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "2023-01-01T00:00:00Z",
                         "kind": "query",
                         "name": "start_date",
                         "orig": "start_date",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "zone",
                         "orig": "zone",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       }
                     ]
                   },
@@ -168,48 +142,49 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "standorte": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "geometry",
               "req": false,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             },
             {
+              "active": true,
               "name": "property",
               "req": false,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             },
             {
+              "active": true,
               "name": "type",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "standorte",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "GET",
                   "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
                   "parts": [
@@ -218,19 +193,15 @@
                     "download",
                     "hystreet_locations.json"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
@@ -238,9 +209,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -248,6 +216,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -256,25 +232,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -290,20 +252,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -318,23 +292,30 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicFrequenzenFlow": {
+          "active": true,
           "entity": "frequenzen",
+          "key$": "BasicFrequenzenFlow",
           "kind": "basic",
           "name": "BasicFrequenzenFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -342,25 +323,25 @@
                     "ref": "frequenzen_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicFrequenzenFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicStandorteFlow": {
+          "active": true,
           "entity": "standorte",
+          "key$": "BasicStandorteFlow",
           "kind": "basic",
           "name": "BasicStandorteFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -368,29 +349,57 @@
                     "ref": "standorte_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicStandorteFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "contact": {
+          "name": "Open Data Zürich",
+          "url": "https://data.stadt-zuerich.ch"
+        },
+        "description": "Dieses API ermöglicht den Zugriff auf Daten zu Passantenfrequenzen an verschiedenen Standorten in Zürich. Die Messungen werden stündlich aktualisiert und umfassen Informationen über die Anzahl der Passanten, unterteilt nach Zonen, Geschlecht und Laufrichtung sowie Wetterdaten.",
+        "license": {
+          "name": "Creative Commons Attribution",
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        "servers": [
+          {
+            "description": "Open Data Zürich Production Server",
+            "url": "https://data.stadt-zuerich.ch"
+          }
+        ],
+        "title": "Passantenfrequenzen Zürich",
+        "version": "1.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "passantenfrequenzen-zuerich"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "passantenfrequenzen-zuerich"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -405,19 +414,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "passantenfrequenzen-zuerich"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -432,138 +441,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "passantenfrequenzen-zuerich"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "passantenfrequenzen-zuerich"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "passantenfrequenzen-zuerich"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "passantenfrequenzen-zuerich"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "passantenfrequenzen-zuerich"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "passantenfrequenzen-zuerich"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "passantenfrequenzen-zuerich"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "passantenfrequenzen-zuerich"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "passantenfrequenzen-zuerich"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "passantenfrequenzen-zuerich",
+  "origin": "voxgig-sdk"
 }
