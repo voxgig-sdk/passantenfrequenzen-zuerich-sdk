@@ -245,11 +245,17 @@ func (sdk *PassantenfrequenzenZuerichSDK) Direct(fetchargs map[string]any) (map[
 }
 
 
+// Frequenzen returns a Frequenzen entity bound to this client.
+// Idiomatic usage: client.Frequenzen(nil).List(nil, nil) or
+// client.Frequenzen(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PassantenfrequenzenZuerichSDK) Frequenzen(data map[string]any) PassantenfrequenzenZuerichEntity {
 	return NewFrequenzenEntityFunc(sdk, data)
 }
 
 
+// Standorte returns a Standorte entity bound to this client.
+// Idiomatic usage: client.Standorte(nil).List(nil, nil) or
+// client.Standorte(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PassantenfrequenzenZuerichSDK) Standorte(data map[string]any) PassantenfrequenzenZuerichEntity {
 	return NewStandorteEntityFunc(sdk, data)
 }

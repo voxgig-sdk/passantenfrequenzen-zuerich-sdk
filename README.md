@@ -10,26 +10,24 @@ This is an unofficial SDK for the Passantenfrequenzen Zürich public API, genera
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/passantenfrequenzen-zuerich` | `npm install @voxgig-sdk/passantenfrequenzen-zuerich` |
-| Python | `voxgig-sdk-passantenfrequenzen-zuerich` | `pip install voxgig-sdk-passantenfrequenzen-zuerich` |
-| PHP | `voxgig-sdk/passantenfrequenzen-zuerich` | `composer require voxgig-sdk/passantenfrequenzen-zuerich` |
-| Golang | `github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go` | `go get github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go` |
-| Ruby | `voxgig-sdk-passantenfrequenzen-zuerich` | `gem install voxgig-sdk-passantenfrequenzen-zuerich` |
-| Lua | `voxgig-sdk-passantenfrequenzen-zuerich` | `luarocks install voxgig-sdk-passantenfrequenzen-zuerich` |
+| TypeScript | `@voxgig-sdk/passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
+| Python | `voxgig-sdk-passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
+| PHP | `voxgig-sdk/passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go` | `go get github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go@latest` |
+| Ruby | `voxgig-sdk-passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
+| Lua | `voxgig-sdk-passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
 
 ## Quickstart
 
 ### TypeScript
 
 ```ts
-import { PassantenfrequenzenZuerichSDK } from 'passantenfrequenzen-zuerich'
+import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-zuerich'
 
-const client = new PassantenfrequenzenZuerichSDK({
-  apikey: process.env.PASSANTENFREQUENZEN-ZUERICH_APIKEY,
-})
+const client = new PassantenfrequenzenZuerichSDK()
 
 // List all frequenzens
-const frequenzens = await client.Frequenzen().list()
+const frequenzens = await client.frequenzen.list()
 console.log(frequenzens.data)
 ```
 
@@ -71,8 +69,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Frequenzen** |  | `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv` |
-| **Standorte** |  | `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json` |
+| **Frequenzen** | The Frequenzen entity (list). | `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv` |
+| **Standorte** | The Standorte entity (list). | `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -82,15 +80,12 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
-import os
 from passantenfrequenzenzuerich_sdk import PassantenfrequenzenZuerichSDK
 
-client = PassantenfrequenzenZuerichSDK({
-    "apikey": os.environ.get("PASSANTENFREQUENZEN-ZUERICH_APIKEY"),
-})
+client = PassantenfrequenzenZuerichSDK()
 
 # List all frequenzens
-frequenzens, err = client.Frequenzen().list()
+frequenzens = client.frequenzen.list()
 print(frequenzens)
 ```
 
@@ -100,12 +95,10 @@ print(frequenzens)
 <?php
 require_once 'passantenfrequenzenzuerich_sdk.php';
 
-$client = new PassantenfrequenzenZuerichSDK([
-    "apikey" => getenv("PASSANTENFREQUENZEN-ZUERICH_APIKEY"),
-]);
+$client = new PassantenfrequenzenZuerichSDK();
 
-// List all frequenzens
-[$frequenzens, $err] = $client->Frequenzen()->list();
+// List all frequenzens (throws on error)
+$frequenzens = $client->frequenzen()->list();
 print_r($frequenzens);
 ```
 
@@ -114,9 +107,7 @@ print_r($frequenzens);
 ```go
 import sdk "github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go"
 
-client := sdk.NewPassantenfrequenzenZuerichSDK(map[string]any{
-    "apikey": os.Getenv("PASSANTENFREQUENZEN-ZUERICH_APIKEY"),
-})
+client := sdk.New()
 
 // List all frequenzens
 frequenzens, err := client.Frequenzen(nil).List(nil, nil)
@@ -128,12 +119,10 @@ fmt.Println(frequenzens)
 ```ruby
 require_relative "PassantenfrequenzenZuerich_sdk"
 
-client = PassantenfrequenzenZuerichSDK.new({
-  "apikey" => ENV["PASSANTENFREQUENZEN-ZUERICH_APIKEY"],
-})
+client = PassantenfrequenzenZuerichSDK.new
 
 # List all frequenzens
-frequenzens, err = client.Frequenzen().list
+frequenzens = client.frequenzen.list
 puts frequenzens
 ```
 
@@ -142,12 +131,10 @@ puts frequenzens
 ```lua
 local sdk = require("passantenfrequenzen-zuerich_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("PASSANTENFREQUENZEN-ZUERICH_APIKEY"),
-})
+local client = sdk.new()
 
 -- List all frequenzens
-local frequenzens, err = client:Frequenzen():list()
+local frequenzens, err = client:frequenzen():list()
 print(frequenzens)
 ```
 
@@ -160,7 +147,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = PassantenfrequenzenZuerichSDK.test()
-const result = await client.Frequenzen().load({ id: 'test01' })
+const result = await client.frequenzen.load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
@@ -168,14 +155,14 @@ const result = await client.Frequenzen().load({ id: 'test01' })
 
 ```python
 client = PassantenfrequenzenZuerichSDK.test()
-result, err = client.Frequenzen().load({"id": "test01"})
+result = client.frequenzen.load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
 $client = PassantenfrequenzenZuerichSDK::test();
-[$result, $err] = $client->Frequenzen()->load(["id" => "test01"]);
+$result = $client->frequenzen()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -191,14 +178,14 @@ result, err := client.Frequenzen(nil).Load(
 
 ```ruby
 client = PassantenfrequenzenZuerichSDK.test
-result, err = client.Frequenzen().load({ "id" => "test01" })
+result = client.frequenzen.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Frequenzen():load({ id = "test01" })
+local result, err = client:frequenzen():load({ id = "test01" })
 ```
 
 ## How it works
@@ -251,7 +238,7 @@ console.log(result.data)
 
 **Python:**
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
@@ -260,7 +247,7 @@ result, err = client.direct({
 
 **PHP:**
 ```php
-[$result, $err] = $client->direct([
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
@@ -278,7 +265,7 @@ result, err := client.Direct(map[string]any{
 
 **Ruby:**
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },

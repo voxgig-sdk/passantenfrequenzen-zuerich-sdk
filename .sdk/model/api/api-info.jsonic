@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "Open Data Zürich"
         url: "https://data.stadt-zuerich.ch"

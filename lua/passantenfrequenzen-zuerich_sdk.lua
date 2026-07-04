@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:frequenzen():list() / client:frequenzen():load({ id = ... })
+function PassantenfrequenzenZuerichSDK:frequenzen(data)
+  local EntityMod = require("entity.frequenzen_entity")
+  if data == nil then
+    if self._frequenzen == nil then
+      self._frequenzen = EntityMod.new(self, nil)
+    end
+    return self._frequenzen
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:frequenzen() instead.
 function PassantenfrequenzenZuerichSDK:Frequenzen(data)
   local EntityMod = require("entity.frequenzen_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:standorte():list() / client:standorte():load({ id = ... })
+function PassantenfrequenzenZuerichSDK:standorte(data)
+  local EntityMod = require("entity.standorte_entity")
+  if data == nil then
+    if self._standorte == nil then
+      self._standorte = EntityMod.new(self, nil)
+    end
+    return self._standorte
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:standorte() instead.
 function PassantenfrequenzenZuerichSDK:Standorte(data)
   local EntityMod = require("entity.standorte_entity")
   return EntityMod.new(self, data)

@@ -50,8 +50,7 @@ class StandorteEntityTest extends TestCase
         $standorte_ref01_ent = $client->Standorte(null);
         $standorte_ref01_match = [];
 
-        [$standorte_ref01_list_result, $err] = $standorte_ref01_ent->list($standorte_ref01_match, null);
-        $this->assertNull($err);
+        $standorte_ref01_list_result = $standorte_ref01_ent->list($standorte_ref01_match, null);
         $this->assertIsArray($standorte_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function standorte_basic_setup($extra)
         "PASSANTENFREQUENZENZUERICH_TEST_STANDORTE_ENTID" => $idmap,
         "PASSANTENFREQUENZENZUERICH_TEST_LIVE" => "FALSE",
         "PASSANTENFREQUENZENZUERICH_TEST_EXPLAIN" => "FALSE",
-        "PASSANTENFREQUENZENZUERICH_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function standorte_basic_setup($extra)
     if ($env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["PASSANTENFREQUENZENZUERICH_APIKEY"],
             ],
             $extra ?? [],
         ]);

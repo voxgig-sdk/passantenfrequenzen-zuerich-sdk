@@ -50,8 +50,7 @@ class FrequenzenEntityTest extends TestCase
         $frequenzen_ref01_ent = $client->Frequenzen(null);
         $frequenzen_ref01_match = [];
 
-        [$frequenzen_ref01_list_result, $err] = $frequenzen_ref01_ent->list($frequenzen_ref01_match, null);
-        $this->assertNull($err);
+        $frequenzen_ref01_list_result = $frequenzen_ref01_ent->list($frequenzen_ref01_match, null);
         $this->assertIsArray($frequenzen_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function frequenzen_basic_setup($extra)
         "PASSANTENFREQUENZENZUERICH_TEST_FREQUENZEN_ENTID" => $idmap,
         "PASSANTENFREQUENZENZUERICH_TEST_LIVE" => "FALSE",
         "PASSANTENFREQUENZENZUERICH_TEST_EXPLAIN" => "FALSE",
-        "PASSANTENFREQUENZENZUERICH_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function frequenzen_basic_setup($extra)
     if ($env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["PASSANTENFREQUENZENZUERICH_APIKEY"],
             ],
             $extra ?? [],
         ]);

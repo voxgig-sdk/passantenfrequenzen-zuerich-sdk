@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch StandorteListMatch
+---@param ctrl? table
+---@return Standorte[]
+---@return string? err
 function StandorteEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

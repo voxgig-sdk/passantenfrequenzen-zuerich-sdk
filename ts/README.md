@@ -9,9 +9,12 @@ The TypeScript SDK for the PassantenfrequenzenZuerich API — a type-safe, entit
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/passantenfrequenzen-zuerich
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PassantenfrequenzenZuerichSDK } from 'passantenfrequenzen-zuerich'
+import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-zuerich'
 
-const client = new PassantenfrequenzenZuerichSDK({
-  apikey: process.env.PASSANTENFREQUENZEN-ZUERICH_APIKEY,
-})
+const client = new PassantenfrequenzenZuerichSDK()
 ```
 
 ### 2. List frequenzens
 
 ```ts
-const result = await client.Frequenzen().list()
+const result = await client.frequenzen.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PassantenfrequenzenZuerichSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.frequenzen.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new PassantenfrequenzenZuerichSDK({ apikey: '...' })
+const client = new PassantenfrequenzenZuerichSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.frequenzen
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new PassantenfrequenzenZuerichSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new PassantenfrequenzenZuerichSDK({
 Create a `.env.local` file at the project root:
 
 ```
-PASSANTENFREQUENZEN-ZUERICH_TEST_LIVE=TRUE
-PASSANTENFREQUENZEN-ZUERICH_APIKEY=<your-key>
+PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new PassantenfrequenzenZuerichSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new PassantenfrequenzenZuerichSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -288,7 +285,7 @@ API path: `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.j
 
 ### Frequenzen
 
-Create an instance: `const frequenzen = client.Frequenzen()`
+Create an instance: `const frequenzen = client.frequenzen`
 
 #### Operations
 
@@ -312,13 +309,13 @@ Create an instance: `const frequenzen = client.Frequenzen()`
 #### Example: List
 
 ```ts
-const frequenzens = await client.Frequenzen().list()
+const frequenzens = await client.frequenzen.list()
 ```
 
 
 ### Standorte
 
-Create an instance: `const standorte = client.Standorte()`
+Create an instance: `const standorte = client.standorte`
 
 #### Operations
 
@@ -337,7 +334,7 @@ Create an instance: `const standorte = client.Standorte()`
 #### Example: List
 
 ```ts
-const standortes = await client.Standorte().list()
+const standortes = await client.standorte.list()
 ```
 
 
@@ -398,7 +395,7 @@ passantenfrequenzen-zuerich/
 Import the SDK from the package root:
 
 ```ts
-import { PassantenfrequenzenZuerichSDK } from 'passantenfrequenzen-zuerich'
+import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-zuerich'
 ```
 
 ### Entity state
@@ -408,11 +405,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const frequenzen = client.frequenzen
+await frequenzen.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// frequenzen.data() now returns the loaded frequenzen data
+// frequenzen.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

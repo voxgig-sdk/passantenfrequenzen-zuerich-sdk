@@ -9,12 +9,9 @@ The Lua SDK for the PassantenfrequenzenZuerich API — an entity-oriented client
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-passantenfrequenzen-zuerich
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("passantenfrequenzen-zuerich_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("PASSANTENFREQUENZEN-ZUERICH_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List frequenzens
 
 ```lua
-local result, err = client:Frequenzen():list()
+local result, err = client:frequenzen():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:PassantenfrequenzenZuerich():load({ id = "test01" })
+local result, err = client:frequenzen():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -126,8 +121,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-PASSANTENFREQUENZEN-ZUERICH_TEST_LIVE=TRUE
-PASSANTENFREQUENZEN-ZUERICH_APIKEY=<your-key>
+PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -150,7 +144,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -247,7 +240,7 @@ API path: `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.j
 
 ### Frequenzen
 
-Create an instance: `const frequenzen = client.Frequenzen()`
+Create an instance: `const frequenzen = client.frequenzen`
 
 #### Operations
 
@@ -271,13 +264,13 @@ Create an instance: `const frequenzen = client.Frequenzen()`
 #### Example: List
 
 ```ts
-const frequenzens = await client.Frequenzen().list()
+const frequenzens = await client.frequenzen.list()
 ```
 
 
 ### Standorte
 
-Create an instance: `const standorte = client.Standorte()`
+Create an instance: `const standorte = client.standorte`
 
 #### Operations
 
@@ -296,7 +289,7 @@ Create an instance: `const standorte = client.Standorte()`
 #### Example: List
 
 ```ts
-const standortes = await client.Standorte().list()
+const standortes = await client.standorte.list()
 ```
 
 
@@ -371,11 +364,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local frequenzen = client:frequenzen()
+frequenzen:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- frequenzen:data_get() now returns the loaded frequenzen data
+-- frequenzen:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

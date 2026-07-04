@@ -50,8 +50,7 @@ class TestStandorteEntity:
         standorte_ref01_ent = client.Standorte(None)
         standorte_ref01_match = {}
 
-        standorte_ref01_list_result, err = standorte_ref01_ent.list(standorte_ref01_match, None)
-        assert err is None
+        standorte_ref01_list_result = standorte_ref01_ent.list(standorte_ref01_match, None)
         assert isinstance(standorte_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _standorte_basic_setup(extra):
         "PASSANTENFREQUENZENZUERICH_TEST_STANDORTE_ENTID": idmap,
         "PASSANTENFREQUENZENZUERICH_TEST_LIVE": "FALSE",
         "PASSANTENFREQUENZENZUERICH_TEST_EXPLAIN": "FALSE",
-        "PASSANTENFREQUENZENZUERICH_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _standorte_basic_setup(extra):
     if env.get("PASSANTENFREQUENZENZUERICH_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("PASSANTENFREQUENZENZUERICH_APIKEY"),
             },
             extra or {},
         ])

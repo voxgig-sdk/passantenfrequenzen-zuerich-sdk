@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -88,7 +87,7 @@ same parameters as `direct()`.
 ## FrequenzenEntity
 
 ```lua
-local frequenzen = client:Frequenzen(nil)
+local frequenzen = client:frequenzen(nil)
 ```
 
 ### Fields
@@ -111,7 +110,7 @@ local frequenzen = client:Frequenzen(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Frequenzen():list()
+local results, err = client:frequenzen():list()
 ```
 
 ### Common Methods
@@ -147,7 +146,7 @@ Return the entity name.
 ## StandorteEntity
 
 ```lua
-local standorte = client:Standorte(nil)
+local standorte = client:standorte(nil)
 ```
 
 ### Fields
@@ -165,7 +164,7 @@ local standorte = client:Standorte(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Standorte():list()
+local results, err = client:standorte():list()
 ```
 
 ### Common Methods

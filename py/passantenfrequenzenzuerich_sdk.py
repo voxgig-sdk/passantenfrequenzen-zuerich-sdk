@@ -144,16 +144,23 @@ class PassantenfrequenzenZuerichSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class PassantenfrequenzenZuerichSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,20 +212,42 @@ class PassantenfrequenzenZuerichSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def frequenzen(self):
+        """Idiomatic facade: client.frequenzen.list() / client.frequenzen.load({"id": ...})."""
+        from entity.frequenzen_entity import FrequenzenEntity
+        cached = getattr(self, "_frequenzen", None)
+        if cached is None:
+            cached = FrequenzenEntity(self, None)
+            self._frequenzen = cached
+        return cached
 
     def Frequenzen(self, data=None):
+        # Deprecated: use client.frequenzen instead.
         from entity.frequenzen_entity import FrequenzenEntity
         return FrequenzenEntity(self, data)
 
 
+    @property
+    def standorte(self):
+        """Idiomatic facade: client.standorte.list() / client.standorte.load({"id": ...})."""
+        from entity.standorte_entity import StandorteEntity
+        cached = getattr(self, "_standorte", None)
+        if cached is None:
+            cached = StandorteEntity(self, None)
+            self._standorte = cached
+        return cached
+
     def Standorte(self, data=None):
+        # Deprecated: use client.standorte instead.
         from entity.standorte_entity import StandorteEntity
         return StandorteEntity(self, data)
 

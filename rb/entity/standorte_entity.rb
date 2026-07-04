@@ -45,6 +45,7 @@ class StandorteEntity
     end
   end
 
+  # @return [Standorte, Hash] the current Standorte data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class StandorteEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Standorte fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class StandorteEntity
   
 
   
+  # List Standorte items matching the given filter.
+  #
+  # @param reqmatch [StandorteListMatch, Hash, nil] match filter (any subset of Standorte fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Standorte>, Array] the matching Standorte items; raises PassantenfrequenzenZuerichError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

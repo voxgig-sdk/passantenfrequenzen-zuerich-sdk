@@ -20,9 +20,6 @@ class PassantenfrequenzenZuerichConfig
             ],
             "options" => [
                 "base" => "https://data.stadt-zuerich.ch",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'PassantenfrequenzenZuerich_types'
+
 
 class PassantenfrequenzenZuerichSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class PassantenfrequenzenZuerichSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class PassantenfrequenzenZuerichSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue PassantenfrequenzenZuerichError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = PassantenfrequenzenZuerichHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class PassantenfrequenzenZuerichSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,22 +198,36 @@ class PassantenfrequenzenZuerichSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.frequenzen.list / client.frequenzen.load({ "id" => ... })
+  def frequenzen
+    require_relative 'entity/frequenzen_entity'
+    @frequenzen ||= FrequenzenEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.frequenzen instead.
   def Frequenzen(data = nil)
     require_relative 'entity/frequenzen_entity'
     FrequenzenEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.standorte.list / client.standorte.load({ "id" => ... })
+  def standorte
+    require_relative 'entity/standorte_entity'
+    @standorte ||= StandorteEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.standorte instead.
   def Standorte(data = nil)
     require_relative 'entity/standorte_entity'
     StandorteEntity.new(self, data)

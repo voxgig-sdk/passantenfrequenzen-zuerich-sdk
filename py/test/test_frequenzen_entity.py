@@ -50,8 +50,7 @@ class TestFrequenzenEntity:
         frequenzen_ref01_ent = client.Frequenzen(None)
         frequenzen_ref01_match = {}
 
-        frequenzen_ref01_list_result, err = frequenzen_ref01_ent.list(frequenzen_ref01_match, None)
-        assert err is None
+        frequenzen_ref01_list_result = frequenzen_ref01_ent.list(frequenzen_ref01_match, None)
         assert isinstance(frequenzen_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _frequenzen_basic_setup(extra):
         "PASSANTENFREQUENZENZUERICH_TEST_FREQUENZEN_ENTID": idmap,
         "PASSANTENFREQUENZENZUERICH_TEST_LIVE": "FALSE",
         "PASSANTENFREQUENZENZUERICH_TEST_EXPLAIN": "FALSE",
-        "PASSANTENFREQUENZENZUERICH_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _frequenzen_basic_setup(extra):
     if env.get("PASSANTENFREQUENZENZUERICH_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("PASSANTENFREQUENZENZUERICH_APIKEY"),
             },
             extra or {},
         ])
