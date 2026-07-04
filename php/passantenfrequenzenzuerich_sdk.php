@@ -233,10 +233,10 @@ class PassantenfrequenzenZuerichSDK
 
     private $_frequenzen = null;
 
-    // Idiomatic facade: $client->frequenzen()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Frequenzen() (PHP method
-    // names are case-insensitive).
-    public function frequenzen($data = null)
+    // Canonical facade: $client->Frequenzen()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->frequenzen()
+    // resolves here too.
+    public function Frequenzen($data = null)
     {
         require_once __DIR__ . '/entity/frequenzen_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class PassantenfrequenzenZuerichSDK
 
     private $_standorte = null;
 
-    // Idiomatic facade: $client->standorte()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Standorte() (PHP method
-    // names are case-insensitive).
-    public function standorte($data = null)
+    // Canonical facade: $client->Standorte()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->standorte()
+    // resolves here too.
+    public function Standorte($data = null)
     {
         require_once __DIR__ . '/entity/standorte_entity.php';
         if ($data === null) {

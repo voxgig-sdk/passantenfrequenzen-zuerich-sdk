@@ -121,7 +121,7 @@ Alias for `PassantenfrequenzenZuerichSDK.test()`.
 ## FrequenzenEntity
 
 ```ts
-const frequenzen = client.frequenzen
+const frequenzen = client.Frequenzen()
 ```
 
 ### Fields
@@ -144,7 +144,7 @@ const frequenzen = client.frequenzen
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.frequenzen.list()
+const results = await client.Frequenzen().list()
 ```
 
 ### Common Methods
@@ -178,7 +178,7 @@ Return a copy of the entity options.
 ## StandorteEntity
 
 ```ts
-const standorte = client.standorte
+const standorte = client.Standorte()
 ```
 
 ### Fields
@@ -196,7 +196,7 @@ const standorte = client.standorte
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.standorte.list()
+const results = await client.Standorte().list()
 ```
 
 ### Common Methods

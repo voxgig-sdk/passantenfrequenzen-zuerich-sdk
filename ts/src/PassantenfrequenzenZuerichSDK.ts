@@ -205,28 +205,14 @@ class PassantenfrequenzenZuerichSDK {
 
 
 
-  _frequenzen?: FrequenzenEntity
-
-  // Idiomatic facade: `client.frequenzen.list()` / `client.frequenzen.load({ id })`.
-  get frequenzen(): FrequenzenEntity {
-    return (this._frequenzen ??= new FrequenzenEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.frequenzen` instead. */
+  // Entity access: `client.Frequenzen().list()` / `client.Frequenzen().load({ id })`.
   Frequenzen(data?: any) {
     const self = this
     return new FrequenzenEntity(self,data)
   }
 
 
-  _standorte?: StandorteEntity
-
-  // Idiomatic facade: `client.standorte.list()` / `client.standorte.load({ id })`.
-  get standorte(): StandorteEntity {
-    return (this._standorte ??= new StandorteEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.standorte` instead. */
+  // Entity access: `client.Standorte().list()` / `client.Standorte().load({ id })`.
   Standorte(data?: any) {
     const self = this
     return new StandorteEntity(self,data)

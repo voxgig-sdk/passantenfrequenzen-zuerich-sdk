@@ -29,18 +29,16 @@ require_once 'passantenfrequenzenzuerich_sdk.php';
 $client = new PassantenfrequenzenZuerichSDK();
 ```
 
-### 2. List frequenzens
+### 2. List frequenzen records
 
 ```php
 try {
-    $result = $client->frequenzen()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Frequenzen records — iterate directly.
+    $frequenzens = $client->Frequenzen()->list();
+    foreach ($frequenzens as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = PassantenfrequenzenZuerichSDK::test();
+$client = PassantenfrequenzenZuerichSDK::test([
+    "entity" => ["frequenzen" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->frequenzen()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$frequenzen = $client->Frequenzen()->load(["id" => "test01"]);
+print_r($frequenzen);
 ```
 
 ### Use a custom fetch function
@@ -248,7 +250,7 @@ API path: `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.j
 
 ### Frequenzen
 
-Create an instance: `const frequenzen = client.frequenzen`
+Create an instance: `$frequenzen = $client->Frequenzen();`
 
 #### Operations
 
@@ -271,14 +273,15 @@ Create an instance: `const frequenzen = client.frequenzen`
 
 #### Example: List
 
-```ts
-const frequenzens = await client.frequenzen.list()
+```php
+// list() returns an array of Frequenzen records (throws on error).
+$frequenzens = $client->Frequenzen()->list();
 ```
 
 
 ### Standorte
 
-Create an instance: `const standorte = client.standorte`
+Create an instance: `$standorte = $client->Standorte();`
 
 #### Operations
 
@@ -296,8 +299,9 @@ Create an instance: `const standorte = client.standorte`
 
 #### Example: List
 
-```ts
-const standortes = await client.standorte.list()
+```php
+// list() returns an array of Standorte records (throws on error).
+$standortes = $client->Standorte()->list();
 ```
 
 
@@ -372,7 +376,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$frequenzen = $client->frequenzen();
+$frequenzen = $client->Frequenzen();
 $frequenzen->load(["id" => "example_id"]);
 
 // $frequenzen->dataGet() now returns the loaded frequenzen data

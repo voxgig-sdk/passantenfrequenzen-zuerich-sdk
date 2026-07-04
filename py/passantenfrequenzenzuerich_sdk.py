@@ -220,41 +220,21 @@ class PassantenfrequenzenZuerichSDK:
         }
 
 
-    @property
-    def frequenzen(self):
-        """Idiomatic facade: client.frequenzen.list() / client.frequenzen.load({"id": ...})."""
-        from entity.frequenzen_entity import FrequenzenEntity
-        cached = getattr(self, "_frequenzen", None)
-        if cached is None:
-            cached = FrequenzenEntity(self, None)
-            self._frequenzen = cached
-        return cached
-
-    def Frequenzen(self, data=None):
-        # Deprecated: use client.frequenzen instead.
+    def Frequenzen(self, data=None) -> "FrequenzenEntity":
+        """Entity factory: client.Frequenzen().list({}) / client.Frequenzen().load({"id": ...})."""
         from entity.frequenzen_entity import FrequenzenEntity
         return FrequenzenEntity(self, data)
 
 
-    @property
-    def standorte(self):
-        """Idiomatic facade: client.standorte.list() / client.standorte.load({"id": ...})."""
-        from entity.standorte_entity import StandorteEntity
-        cached = getattr(self, "_standorte", None)
-        if cached is None:
-            cached = StandorteEntity(self, None)
-            self._standorte = cached
-        return cached
-
-    def Standorte(self, data=None):
-        # Deprecated: use client.standorte instead.
+    def Standorte(self, data=None) -> "StandorteEntity":
+        """Entity factory: client.Standorte().list({}) / client.Standorte().load({"id": ...})."""
         from entity.standorte_entity import StandorteEntity
         return StandorteEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "PassantenfrequenzenZuerichSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class PassantenfrequenzenZuerichSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.frequenzen_entity import FrequenzenEntity
+    from entity.standorte_entity import StandorteEntity

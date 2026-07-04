@@ -87,7 +87,7 @@ same parameters as `direct()`.
 ## FrequenzenEntity
 
 ```lua
-local frequenzen = client:frequenzen(nil)
+local frequenzen = client:Frequenzen(nil)
 ```
 
 ### Fields
@@ -110,7 +110,7 @@ local frequenzen = client:frequenzen(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:frequenzen():list()
+local results, err = client:Frequenzen():list()
 ```
 
 ### Common Methods
@@ -146,7 +146,7 @@ Return the entity name.
 ## StandorteEntity
 
 ```lua
-local standorte = client:standorte(nil)
+local standorte = client:Standorte(nil)
 ```
 
 ### Fields
@@ -164,7 +164,7 @@ local standorte = client:standorte(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:standorte():list()
+local results, err = client:Standorte():list()
 ```
 
 ### Common Methods

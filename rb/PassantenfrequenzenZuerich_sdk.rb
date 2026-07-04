@@ -208,26 +208,14 @@ class PassantenfrequenzenZuerichSDK
   end
 
 
-  # Idiomatic facade: client.frequenzen.list / client.frequenzen.load({ "id" => ... })
-  def frequenzen
-    require_relative 'entity/frequenzen_entity'
-    @frequenzen ||= FrequenzenEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.frequenzen instead.
+  # Canonical facade: client.Frequenzen.list / client.Frequenzen.load({ "id" => ... })
   def Frequenzen(data = nil)
     require_relative 'entity/frequenzen_entity'
     FrequenzenEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.standorte.list / client.standorte.load({ "id" => ... })
-  def standorte
-    require_relative 'entity/standorte_entity'
-    @standorte ||= StandorteEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.standorte instead.
+  # Canonical facade: client.Standorte.list / client.Standorte.load({ "id" => ... })
   def Standorte(data = nil)
     require_relative 'entity/standorte_entity'
     StandorteEntity.new(self, data)

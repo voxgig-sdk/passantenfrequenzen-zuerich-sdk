@@ -4,47 +4,47 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Frequenzen:
-    age_group: Optional[str] = None
-    count: Optional[int] = None
-    direction: Optional[str] = None
-    location: Optional[str] = None
-    temperature: Optional[float] = None
-    timestamp: Optional[str] = None
-    weather: Optional[str] = None
-    zone: Optional[int] = None
+class Frequenzen(TypedDict, total=False):
+    age_group: str
+    count: int
+    direction: str
+    location: str
+    temperature: float
+    timestamp: str
+    weather: str
+    zone: int
 
 
-@dataclass
-class FrequenzenListMatch:
-    age_group: Optional[str] = None
-    count: Optional[int] = None
-    direction: Optional[str] = None
-    location: Optional[str] = None
-    temperature: Optional[float] = None
-    timestamp: Optional[str] = None
-    weather: Optional[str] = None
-    zone: Optional[int] = None
+class FrequenzenListMatch(TypedDict, total=False):
+    age_group: str
+    count: int
+    direction: str
+    location: str
+    temperature: float
+    timestamp: str
+    weather: str
+    zone: int
 
 
-@dataclass
-class Standorte:
-    geometry: Optional[dict] = None
-    property: Optional[dict] = None
-    type: Optional[str] = None
+class Standorte(TypedDict, total=False):
+    geometry: dict
+    property: dict
+    type: str
 
 
-@dataclass
-class StandorteListMatch:
-    geometry: Optional[dict] = None
-    property: Optional[dict] = None
-    type: Optional[str] = None
-
+class StandorteListMatch(TypedDict, total=False):
+    geometry: dict
+    property: dict
+    type: str

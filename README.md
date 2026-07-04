@@ -26,9 +26,11 @@ import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-z
 
 const client = new PassantenfrequenzenZuerichSDK()
 
-// List all frequenzens
-const frequenzens = await client.frequenzen.list()
-console.log(frequenzens.data)
+// List all frequenzens (returns Frequenzen[])
+const frequenzens = await client.Frequenzen().list()
+for (const frequenzen of frequenzens) {
+  console.log(frequenzen)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -84,9 +86,10 @@ from passantenfrequenzenzuerich_sdk import PassantenfrequenzenZuerichSDK
 
 client = PassantenfrequenzenZuerichSDK()
 
-# List all frequenzens
-frequenzens = client.frequenzen.list()
-print(frequenzens)
+# List all frequenzens (returns a list, raises on error)
+frequenzens = client.Frequenzen().list({})
+for frequenzen in frequenzens:
+    print(frequenzen)
 ```
 
 ### PHP
@@ -97,8 +100,8 @@ require_once 'passantenfrequenzenzuerich_sdk.php';
 
 $client = new PassantenfrequenzenZuerichSDK();
 
-// List all frequenzens (throws on error)
-$frequenzens = $client->frequenzen()->list();
+// List all frequenzens (returns an array; throws on error)
+$frequenzens = $client->Frequenzen()->list();
 print_r($frequenzens);
 ```
 
@@ -121,8 +124,8 @@ require_relative "PassantenfrequenzenZuerich_sdk"
 
 client = PassantenfrequenzenZuerichSDK.new
 
-# List all frequenzens
-frequenzens = client.frequenzen.list
+# List all frequenzens (returns an Array; raises on error)
+frequenzens = client.Frequenzen.list
 puts frequenzens
 ```
 
@@ -134,7 +137,7 @@ local sdk = require("passantenfrequenzen-zuerich_sdk")
 local client = sdk.new()
 
 -- List all frequenzens
-local frequenzens, err = client:frequenzen():list()
+local frequenzens, err = client:Frequenzen():list()
 print(frequenzens)
 ```
 
@@ -147,22 +150,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = PassantenfrequenzenZuerichSDK.test()
-const result = await client.frequenzen.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const frequenzen = await client.Frequenzen().load({ id: 'test01' })
+// frequenzen is a bare Frequenzen populated with mock data
+console.log(frequenzen)
 ```
 
 ### Python
 
 ```python
 client = PassantenfrequenzenZuerichSDK.test()
-result = client.frequenzen.load({"id": "test01"})
+frequenzen = client.Frequenzen().load({"id": "test01"})
+print(frequenzen)
 ```
 
 ### PHP
 
 ```php
-$client = PassantenfrequenzenZuerichSDK::test();
-$result = $client->frequenzen()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = PassantenfrequenzenZuerichSDK::test([
+    "entity" => ["frequenzen" => ["test01" => ["id" => "test01"]]],
+]);
+$frequenzen = $client->Frequenzen()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -177,15 +185,18 @@ result, err := client.Frequenzen(nil).Load(
 ### Ruby
 
 ```ruby
-client = PassantenfrequenzenZuerichSDK.test
-result = client.frequenzen.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = PassantenfrequenzenZuerichSDK.test({
+  "entity" => { "frequenzen" => { "test01" => { "id" => "test01" } } },
+})
+frequenzen = client.Frequenzen.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:frequenzen():load({ id = "test01" })
+local result, err = client:Frequenzen():load({ id = "test01" })
 ```
 
 ## How it works
@@ -233,6 +244,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

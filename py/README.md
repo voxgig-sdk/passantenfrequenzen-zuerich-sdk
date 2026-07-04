@@ -31,14 +31,16 @@ from passantenfrequenzenzuerich_sdk import PassantenfrequenzenZuerichSDK
 client = PassantenfrequenzenZuerichSDK()
 ```
 
-### 2. List frequenzens
+### 2. List frequenzen records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.frequenzen.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    frequenzens = client.Frequenzen().list({})
+    for frequenzen in frequenzens:
+        print(frequenzen)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = PassantenfrequenzenZuerichSDK.test()
 
-result = client.frequenzen.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+frequenzen = client.Frequenzen().load({"id": "test01"})
+# frequenzen contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -240,7 +243,7 @@ API path: `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.j
 
 ### Frequenzen
 
-Create an instance: `const frequenzen = client.frequenzen`
+Create an instance: `frequenzen = client.Frequenzen()`
 
 #### Operations
 
@@ -263,14 +266,14 @@ Create an instance: `const frequenzen = client.frequenzen`
 
 #### Example: List
 
-```ts
-const frequenzens = await client.frequenzen.list()
+```python
+frequenzens = client.Frequenzen().list({})
 ```
 
 
 ### Standorte
 
-Create an instance: `const standorte = client.standorte`
+Create an instance: `standorte = client.Standorte()`
 
 #### Operations
 
@@ -288,8 +291,8 @@ Create an instance: `const standorte = client.standorte`
 
 #### Example: List
 
-```ts
-const standortes = await client.standorte.list()
+```python
+standortes = client.Standorte().list({})
 ```
 
 
@@ -363,7 +366,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-frequenzen = client.frequenzen
+frequenzen = client.Frequenzen()
 frequenzen.load({"id": "example_id"})
 
 # frequenzen.data_get() now returns the loaded frequenzen data

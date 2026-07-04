@@ -89,7 +89,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## FrequenzenEntity
 
 ```php
-$frequenzen = $client->frequenzen();
+$frequenzen = $client->Frequenzen();
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ $frequenzen = $client->frequenzen();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->frequenzen()->list([]);
+$results = $client->Frequenzen()->list([]);
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## StandorteEntity
 
 ```php
-$standorte = $client->standorte();
+$standorte = $client->Standorte();
 ```
 
 ### Fields
@@ -166,7 +166,7 @@ $standorte = $client->standorte();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->standorte()->list([]);
+$results = $client->Standorte()->list([]);
 ```
 
 ### Common Methods

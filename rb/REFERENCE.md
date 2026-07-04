@@ -90,7 +90,7 @@ same parameters as `direct()`. Raises on error.
 ## FrequenzenEntity
 
 ```ruby
-frequenzen = client.frequenzen
+frequenzen = client.Frequenzen
 ```
 
 ### Fields
@@ -113,7 +113,7 @@ frequenzen = client.frequenzen
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.frequenzen.list(nil)
+results = client.Frequenzen.list(nil)
 ```
 
 ### Common Methods
@@ -149,7 +149,7 @@ Return the entity name.
 ## StandorteEntity
 
 ```ruby
-standorte = client.standorte
+standorte = client.Standorte
 ```
 
 ### Fields
@@ -167,7 +167,7 @@ standorte = client.standorte
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.standorte.list(nil)
+results = client.Standorte.list(nil)
 ```
 
 ### Common Methods

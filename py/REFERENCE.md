@@ -84,7 +84,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## FrequenzenEntity
 
 ```python
-frequenzen = client.frequenzen
+frequenzen = client.Frequenzen()
 ```
 
 ### Fields
@@ -107,7 +107,9 @@ frequenzen = client.frequenzen
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.frequenzen.list({})
+results = client.Frequenzen().list({})
+for frequenzen in results:
+    print(frequenzen)
 ```
 
 ### Common Methods
@@ -142,7 +144,7 @@ Return the entity name.
 ## StandorteEntity
 
 ```python
-standorte = client.standorte
+standorte = client.Standorte()
 ```
 
 ### Fields
@@ -160,7 +162,9 @@ standorte = client.standorte
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.standorte.list({})
+results = client.Standorte().list({})
+for standorte in results:
+    print(standorte)
 ```
 
 ### Common Methods

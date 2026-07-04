@@ -28,16 +28,14 @@ require_relative "PassantenfrequenzenZuerich_sdk"
 client = PassantenfrequenzenZuerichSDK.new
 ```
 
-### 2. List frequenzens
+### 2. List frequenzen records
 
 ```ruby
 begin
-  result = client.frequenzen.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Frequenzen records — iterate directly.
+  frequenzens = client.Frequenzen.list
+  frequenzens.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = PassantenfrequenzenZuerichSDK.test
+client = PassantenfrequenzenZuerichSDK.test({
+  "entity" => { "frequenzen" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.frequenzen.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+frequenzen = client.Frequenzen.load({ "id" => "test01" })
+puts frequenzen
 ```
 
 ### Use a custom fetch function
@@ -243,7 +245,7 @@ API path: `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.j
 
 ### Frequenzen
 
-Create an instance: `const frequenzen = client.frequenzen`
+Create an instance: `frequenzen = client.Frequenzen`
 
 #### Operations
 
@@ -266,14 +268,15 @@ Create an instance: `const frequenzen = client.frequenzen`
 
 #### Example: List
 
-```ts
-const frequenzens = await client.frequenzen.list()
+```ruby
+# list returns an Array of Frequenzen records (raises on error).
+frequenzens = client.Frequenzen.list
 ```
 
 
 ### Standorte
 
-Create an instance: `const standorte = client.standorte`
+Create an instance: `standorte = client.Standorte`
 
 #### Operations
 
@@ -291,8 +294,9 @@ Create an instance: `const standorte = client.standorte`
 
 #### Example: List
 
-```ts
-const standortes = await client.standorte.list()
+```ruby
+# list returns an Array of Standorte records (raises on error).
+standortes = client.Standorte.list
 ```
 
 
@@ -367,7 +371,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-frequenzen = client.frequenzen
+frequenzen = client.Frequenzen
 frequenzen.load({ "id" => "example_id" })
 
 # frequenzen.data_get now returns the loaded frequenzen data
