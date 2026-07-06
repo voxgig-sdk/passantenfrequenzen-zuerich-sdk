@@ -16,7 +16,16 @@ export interface Frequenzen {
   zone?: number
 }
 
-export type FrequenzenListMatch = Partial<Frequenzen>
+export interface FrequenzenListMatch {
+  age_group?: string
+  count?: number
+  direction?: string
+  location?: string
+  temperature?: number
+  timestamp?: string
+  weather?: string
+  zone?: number
+}
 
 export interface Standorte {
   geometry?: Record<string, any>
@@ -24,5 +33,9 @@ export interface Standorte {
   type?: string
 }
 
-export type StandorteListMatch = Partial<Standorte>
+export interface StandorteListMatch {
+  geometry?: Record<string, any>
+  property?: Record<string, any>
+  type?: string
+}
 

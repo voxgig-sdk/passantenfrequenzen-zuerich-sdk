@@ -8,7 +8,7 @@ Complete API reference for the PassantenfrequenzenZuerich Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'passantenfrequenzen-zuerich_sdk'
+require_relative 'PassantenfrequenzenZuerich_sdk'
 
 client = PassantenfrequenzenZuerichSDK.new(options)
 ```
@@ -97,23 +97,23 @@ frequenzen = client.Frequenzen
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_group` | ``$STRING`` | No |  |
-| `count` | ``$INTEGER`` | No |  |
-| `direction` | ``$STRING`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `temperature` | ``$NUMBER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `weather` | ``$STRING`` | No |  |
-| `zone` | ``$INTEGER`` | No |  |
+| `age_group` | `String` | No |  |
+| `count` | `Integer` | No |  |
+| `direction` | `String` | No |  |
+| `location` | `String` | No |  |
+| `temperature` | `Float` | No |  |
+| `timestamp` | `String` | No |  |
+| `weather` | `String` | No |  |
+| `zone` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Frequenzen.list(nil)
+results = client.Frequenzen.list
 ```
 
 ### Common Methods
@@ -156,18 +156,18 @@ standorte = client.Standorte
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `Hash` | No |  |
+| `property` | `Hash` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Standorte.list(nil)
+results = client.Standorte.list
 ```
 
 ### Common Methods

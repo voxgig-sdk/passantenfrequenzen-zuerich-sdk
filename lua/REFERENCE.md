@@ -94,14 +94,14 @@ local frequenzen = client:Frequenzen(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_group` | ``$STRING`` | No |  |
-| `count` | ``$INTEGER`` | No |  |
-| `direction` | ``$STRING`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `temperature` | ``$NUMBER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `weather` | ``$STRING`` | No |  |
-| `zone` | ``$INTEGER`` | No |  |
+| `age_group` | `string` | No |  |
+| `count` | `number` | No |  |
+| `direction` | `string` | No |  |
+| `location` | `string` | No |  |
+| `temperature` | `number` | No |  |
+| `timestamp` | `string` | No |  |
+| `weather` | `string` | No |  |
+| `zone` | `number` | No |  |
 
 ### Operations
 
@@ -153,9 +153,9 @@ local standorte = client:Standorte(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `table` | No |  |
+| `property` | `table` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

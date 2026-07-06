@@ -45,7 +45,7 @@ Frequenzen = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Frequenzen#list (any subset of Frequenzen fields).
+# Request payload for Frequenzen#list.
 #
 # @!attribute [rw] age_group
 #   @return [String, nil]
@@ -99,7 +99,7 @@ Standorte = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Standorte#list (any subset of Standorte fields).
+# Request payload for Standorte#list.
 #
 # @!attribute [rw] geometry
 #   @return [Hash, nil]

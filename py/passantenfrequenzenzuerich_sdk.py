@@ -221,13 +221,13 @@ class PassantenfrequenzenZuerichSDK:
 
 
     def Frequenzen(self, data=None) -> "FrequenzenEntity":
-        """Entity factory: client.Frequenzen().list({}) / client.Frequenzen().load({"id": ...})."""
+        """Entity factory: client.Frequenzen().list() / client.Frequenzen().load({"id": ...})."""
         from entity.frequenzen_entity import FrequenzenEntity
         return FrequenzenEntity(self, data)
 
 
     def Standorte(self, data=None) -> "StandorteEntity":
-        """Entity factory: client.Standorte().list({}) / client.Standorte().load({"id": ...})."""
+        """Entity factory: client.Standorte().list() / client.Standorte().load({"id": ...})."""
         from entity.standorte_entity import StandorteEntity
         return StandorteEntity(self, data)
 

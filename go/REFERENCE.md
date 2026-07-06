@@ -101,14 +101,14 @@ frequenzen := client.Frequenzen(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_group` | ``$STRING`` | No |  |
-| `count` | ``$INTEGER`` | No |  |
-| `direction` | ``$STRING`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `temperature` | ``$NUMBER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `weather` | ``$STRING`` | No |  |
-| `zone` | ``$INTEGER`` | No |  |
+| `age_group` | `string` | No |  |
+| `count` | `int` | No |  |
+| `direction` | `string` | No |  |
+| `location` | `string` | No |  |
+| `temperature` | `float64` | No |  |
+| `timestamp` | `string` | No |  |
+| `weather` | `string` | No |  |
+| `zone` | `int` | No |  |
 
 ### Operations
 
@@ -154,9 +154,9 @@ standorte := client.Standorte(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `map[string]any` | No |  |
+| `property` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

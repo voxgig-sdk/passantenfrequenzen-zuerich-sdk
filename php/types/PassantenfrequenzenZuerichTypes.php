@@ -25,7 +25,7 @@ class Frequenzen
     public ?int $zone = null;
 }
 
-/** Match filter for Frequenzen#list (any subset of Frequenzen fields). */
+/** Request payload for Frequenzen#list. */
 class FrequenzenListMatch
 {
     public ?string $age_group = null;
@@ -46,7 +46,7 @@ class Standorte
     public ?string $type = null;
 }
 
-/** Match filter for Standorte#list (any subset of Standorte fields). */
+/** Request payload for Standorte#list. */
 class StandorteListMatch
 {
     public ?array $geometry = null;

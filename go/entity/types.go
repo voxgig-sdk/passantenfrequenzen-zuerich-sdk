@@ -20,8 +20,7 @@ type Frequenzen struct {
 	Zone *int `json:"zone,omitempty"`
 }
 
-// FrequenzenListMatch mirrors the frequenzen fields as an all-optional match
-// filter (Go analog of Partial<Frequenzen>).
+// FrequenzenListMatch is the typed request payload for Frequenzen.ListTyped.
 type FrequenzenListMatch struct {
 	AgeGroup *string `json:"age_group,omitempty"`
 	Count *int `json:"count,omitempty"`
@@ -40,8 +39,7 @@ type Standorte struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// StandorteListMatch mirrors the standorte fields as an all-optional match
-// filter (Go analog of Partial<Standorte>).
+// StandorteListMatch is the typed request payload for Standorte.ListTyped.
 type StandorteListMatch struct {
 	Geometry *map[string]any `json:"geometry,omitempty"`
 	Property *map[string]any `json:"property,omitempty"`

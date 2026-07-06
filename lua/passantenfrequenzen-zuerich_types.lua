@@ -17,6 +17,14 @@
 ---@field zone? number
 
 ---@class FrequenzenListMatch
+---@field age_group? string
+---@field count? number
+---@field direction? string
+---@field location? string
+---@field temperature? number
+---@field timestamp? string
+---@field weather? string
+---@field zone? number
 
 ---@class Standorte
 ---@field geometry? table
@@ -24,6 +32,9 @@
 ---@field type? string
 
 ---@class StandorteListMatch
+---@field geometry? table
+---@field property? table
+---@field type? string
 
 local M = {}
 

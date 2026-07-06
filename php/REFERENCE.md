@@ -8,7 +8,7 @@ Complete API reference for the PassantenfrequenzenZuerich PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/passantenfrequenzen-zuerich_sdk.php';
+require_once __DIR__ . '/passantenfrequenzenzuerich_sdk.php';
 
 $client = new PassantenfrequenzenZuerichSDK($options);
 ```
@@ -49,11 +49,11 @@ Create a new `FrequenzenEntity` instance. Pass `null` for no initial data.
 
 Create a new `StandorteEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): PassantenfrequenzenZuerichUtility`
 
 Return a copy of the SDK utility object.
 
@@ -96,40 +96,40 @@ $frequenzen = $client->Frequenzen();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_group` | ``$STRING`` | No |  |
-| `count` | ``$INTEGER`` | No |  |
-| `direction` | ``$STRING`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `temperature` | ``$NUMBER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `weather` | ``$STRING`` | No |  |
-| `zone` | ``$INTEGER`` | No |  |
+| `age_group` | `string` | No |  |
+| `count` | `int` | No |  |
+| `direction` | `string` | No |  |
+| `location` | `string` | No |  |
+| `temperature` | `float` | No |  |
+| `timestamp` | `string` | No |  |
+| `weather` | `string` | No |  |
+| `zone` | `int` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Frequenzen()->list([]);
+$results = $client->Frequenzen()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -138,7 +138,7 @@ Set the entity match criteria.
 Create a new `FrequenzenEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -155,35 +155,35 @@ $standorte = $client->Standorte();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `array` | No |  |
+| `property` | `array` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Standorte()->list([]);
+$results = $client->Standorte()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -192,7 +192,7 @@ Set the entity match criteria.
 Create a new `StandorteEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

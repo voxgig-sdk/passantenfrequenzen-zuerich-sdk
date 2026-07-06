@@ -8,7 +8,7 @@ Complete API reference for the PassantenfrequenzenZuerich Python SDK.
 ### Constructor
 
 ```python
-from passantenfrequenzen-zuerich_sdk import PassantenfrequenzenZuerichSDK
+from passantenfrequenzenzuerich_sdk import PassantenfrequenzenZuerichSDK
 
 client = PassantenfrequenzenZuerichSDK(options)
 ```
@@ -91,23 +91,23 @@ frequenzen = client.Frequenzen()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_group` | ``$STRING`` | No |  |
-| `count` | ``$INTEGER`` | No |  |
-| `direction` | ``$STRING`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `temperature` | ``$NUMBER`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `weather` | ``$STRING`` | No |  |
-| `zone` | ``$INTEGER`` | No |  |
+| `age_group` | `str` | No |  |
+| `count` | `int` | No |  |
+| `direction` | `str` | No |  |
+| `location` | `str` | No |  |
+| `temperature` | `float` | No |  |
+| `timestamp` | `str` | No |  |
+| `weather` | `str` | No |  |
+| `zone` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Frequenzen().list({})
+results = client.Frequenzen().list()
 for frequenzen in results:
     print(frequenzen)
 ```
@@ -151,18 +151,18 @@ standorte = client.Standorte()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `dict` | No |  |
+| `property` | `dict` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Standorte().list({})
+results = client.Standorte().list()
 for standorte in results:
     print(standorte)
 ```
