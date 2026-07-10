@@ -20,9 +20,9 @@ main: {
           url: "https://data.stadt-zuerich.ch"
         }
       ]
+      summary: "Dieses API ermöglicht den Zugriff auf Daten zu Passantenfrequenzen an verschiedenen Standorten in Zürich."
       title: "Passantenfrequenzen Zürich"
       version: "1.0"
+      website: "https://data.stadt-zuerich.ch/dataset/hystreet_fussgaengerfrequenzen"
     }
   }
-}
-

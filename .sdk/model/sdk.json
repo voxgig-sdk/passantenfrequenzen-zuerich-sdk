@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -365,14 +362,17 @@
           "name": "Creative Commons Attribution",
           "url": "https://creativecommons.org/licenses/by/4.0/"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Open Data Zürich Production Server",
             "url": "https://data.stadt-zuerich.ch"
           }
         ],
+        "summary": "Dieses API ermöglicht den Zugriff auf Daten zu Passantenfrequenzen an verschiedenen Standorten in Zürich.",
         "title": "Passantenfrequenzen Zürich",
-        "version": "1.0"
+        "version": "1.0",
+        "website": "https://data.stadt-zuerich.ch/dataset/hystreet_fussgaengerfrequenzen"
       },
       "option": {},
       "target": {
@@ -425,6 +425,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -475,6 +478,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

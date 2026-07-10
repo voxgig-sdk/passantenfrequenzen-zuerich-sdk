@@ -95,6 +95,7 @@ same parameters as `Direct()`.
 
 ```go
 frequenzen := client.Frequenzen(nil)
+fmt.Println(frequenzen.GetName()) // "frequenzen"
 ```
 
 ### Fields
@@ -118,6 +119,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Frequenzen(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -148,6 +153,7 @@ Return the entity name.
 
 ```go
 standorte := client.Standorte(nil)
+fmt.Println(standorte.GetName()) // "standorte"
 ```
 
 ### Fields
@@ -166,6 +172,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Standorte(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
