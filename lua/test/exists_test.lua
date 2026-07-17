@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- PassantenfrequenzenZuerich SDK exists test
 
 local sdk = require("passantenfrequenzen-zuerich_sdk")
 
