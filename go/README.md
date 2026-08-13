@@ -279,7 +279,7 @@ API path: `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaenger
 | Field | Description |
 | --- | --- |
 | `"geometry"` |  |
-| `"property"` |  |
+| `"properties"` |  |
 | `"type"` |  |
 
 Operations: List.
@@ -340,7 +340,7 @@ Create an instance: `standorte := client.Standorte(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `geometry` | `map[string]any` |  |
-| `property` | `map[string]any` |  |
+| `properties` | `map[string]any` |  |
 | `type` | `string` |  |
 
 #### Example: List

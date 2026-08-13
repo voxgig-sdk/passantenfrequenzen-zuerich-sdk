@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = PassantenfrequenzenZuerichSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 frequenzen = client.Frequenzen.list()
 puts frequenzen
 ```
@@ -255,7 +256,7 @@ API path: `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaenger
 | Field | Description |
 | --- | --- |
 | `geometry` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -313,7 +314,7 @@ Create an instance: `standorte = client.Standorte`
 | Field | Type | Description |
 | --- | --- | --- |
 | `geometry` | `Hash` |  |
-| `property` | `Hash` |  |
+| `properties` | `Hash` |  |
 | `type` | `String` |  |
 
 #### Example: List

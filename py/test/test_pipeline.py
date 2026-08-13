@@ -16,11 +16,11 @@
 import pytest
 
 from passantenfrequenzenzuerich_sdk import PassantenfrequenzenZuerichSDK
-from core.error import PassantenfrequenzenZuerichError
-from core.result import PassantenfrequenzenZuerichResult
-from core.response import PassantenfrequenzenZuerichResponse
-from core.spec import PassantenfrequenzenZuerichSpec
-from feature.base_feature import PassantenfrequenzenZuerichBaseFeature
+from passantenfrequenzenzuerich_sdk.core.error import PassantenfrequenzenZuerichError
+from passantenfrequenzenzuerich_sdk.core.result import PassantenfrequenzenZuerichResult
+from passantenfrequenzenzuerich_sdk.core.response import PassantenfrequenzenZuerichResponse
+from passantenfrequenzenzuerich_sdk.core.spec import PassantenfrequenzenZuerichSpec
+from passantenfrequenzenzuerich_sdk.feature.base_feature import PassantenfrequenzenZuerichBaseFeature
 
 
 def _client():

@@ -128,6 +128,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv",
                 ["parts"] = {
@@ -169,7 +170,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "property",
+            ["name"] = "properties",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 1,
@@ -191,6 +192,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
                 ["parts"] = {
@@ -202,7 +204,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.features`",
                 },
                 ["index$"] = 0,
               },

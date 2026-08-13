@@ -37,7 +37,7 @@ class StandorteEntity extends PassantenfrequenzenZuerichEntityBase<Standorte> {
 
 
 
-  async list(this: any, reqmatch?: StandorteListMatch, ctrl?: Control): Promise<Standorte[]> {
+  async list(this: any, reqmatch?: StandorteListMatch, ctrl?: Control): Promise<StandorteEntity[]> {
 
     const utility = this._utility
 

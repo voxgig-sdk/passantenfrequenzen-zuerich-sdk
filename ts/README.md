@@ -35,7 +35,9 @@ const client = new PassantenfrequenzenZuerichSDK()
 
 ### 2. List frequenzen records
 
-`list()` resolves to an array of Frequenzen objects — iterate it directly:
+`list()` resolves to an array of Frequenzen ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const frequenzens = await client.Frequenzen().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = PassantenfrequenzenZuerichSDK.test()
 
 const frequenzen = await client.Frequenzen().list()
-// frequenzen is a bare entity populated with mock response data
+// frequenzen is the entity, populated with mock response data
+// — call frequenzen.data() for the record itself
 console.log(frequenzen)
 ```
 
@@ -303,7 +306,7 @@ API path: `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaenger
 | Field | Description |
 | --- | --- |
 | `geometry` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: list.
@@ -360,7 +363,7 @@ Create an instance: `const standorte = client.Standorte()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `geometry` | `Record<string, any>` |  |
-| `property` | `Record<string, any>` |  |
+| `properties` | `Record<string, any>` |  |
 | `type` | `string` |  |
 
 #### Example: List

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'PassantenfrequenzenZuerich',
   }
 
 
@@ -160,6 +160,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv",
               "parts": [
@@ -201,7 +202,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "property",
+          "name": "properties",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 1
@@ -223,6 +224,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
               "parts": [
@@ -234,7 +236,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.features`"
               },
               "index$": 0
             }

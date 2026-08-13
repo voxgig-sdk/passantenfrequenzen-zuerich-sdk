@@ -43,8 +43,8 @@ class PassantenfrequenzenZuerichTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('PASSANTENFREQUENZENZUERICH_TEST_LIVE');
-        $override = self::getenv('PASSANTENFREQUENZENZUERICH_TEST_OVERRIDE');
+        $live = self::getenv('PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE');
+        $override = self::getenv('PASSANTENFREQUENZEN_ZUERICH_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class PassantenfrequenzenZuerichTestRunner
             }
         }
 
-        $explain = self::getenv('PASSANTENFREQUENZENZUERICH_TEST_EXPLAIN');
+        $explain = self::getenv('PASSANTENFREQUENZEN_ZUERICH_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['PASSANTENFREQUENZENZUERICH_TEST_EXPLAIN'] = $explain;
+            $m['PASSANTENFREQUENZEN_ZUERICH_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

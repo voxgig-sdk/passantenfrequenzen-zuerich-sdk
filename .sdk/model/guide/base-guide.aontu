@@ -14,6 +14,7 @@ guide: {
   entity: standorte: {
     path: "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.features`")|top
     }
   }
 

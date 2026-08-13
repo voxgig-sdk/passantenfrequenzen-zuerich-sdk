@@ -61,11 +61,11 @@ function frequenzen_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["PASSANTENFREQUENZENZUERICH_TEST_FREQUENZEN_ENTID"] = {},
-    ["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] = "FALSE",
+    ["PASSANTENFREQUENZEN_ZUERICH_TEST_FREQUENZEN_ENTID"] = {},
+    ["PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] == "TRUE"
+  local live = env["PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

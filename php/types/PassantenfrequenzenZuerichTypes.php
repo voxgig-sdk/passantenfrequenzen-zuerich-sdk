@@ -42,7 +42,7 @@ class FrequenzenListMatch
 class Standorte
 {
     public ?array $geometry = null;
-    public ?array $property = null;
+    public ?array $properties = null;
     public ?string $type = null;
 }
 
@@ -50,7 +50,7 @@ class Standorte
 class StandorteListMatch
 {
     public ?array $geometry = null;
-    public ?array $property = null;
+    public ?array $properties = null;
     public ?string $type = null;
 }
 

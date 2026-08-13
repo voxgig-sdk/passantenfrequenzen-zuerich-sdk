@@ -66,11 +66,11 @@ function standorte_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "PASSANTENFREQUENZENZUERICH_TEST_STANDORTE_ENTID" => [],
-        "PASSANTENFREQUENZENZUERICH_TEST_LIVE" => "FALSE",
+        "PASSANTENFREQUENZEN_ZUERICH_TEST_STANDORTE_ENTID" => [],
+        "PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] === "TRUE";
+    $live = $env["PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

@@ -26,8 +26,8 @@ import {
 describe('FrequenzenEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PASSANTENFREQUENZENZUERICH_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PASSANTENFREQUENZENZUERICH_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = PassantenfrequenzenZuerichSDK.test()
@@ -63,7 +63,7 @@ describe('FrequenzenEntity', async () => {
     const frequenzen_ref01_ent = client.Frequenzen()
     const frequenzen_ref01_match: any = {}
 
-    const frequenzen_ref01_list = await frequenzen_ref01_ent.list(frequenzen_ref01_match)
+    const frequenzen_ref01_list = (await frequenzen_ref01_ent.list(frequenzen_ref01_match)).map((e: any) => e.data())
 
 
   })

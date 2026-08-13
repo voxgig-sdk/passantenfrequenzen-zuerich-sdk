@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from passantenfrequenzenzuerich_sdk.utility.voxgig_struct import voxgig_struct as vs
 from passantenfrequenzenzuerich_sdk import PassantenfrequenzenZuerichSDK
-from core import helpers
+from passantenfrequenzenzuerich_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _standorte_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "PASSANTENFREQUENZENZUERICH_TEST_STANDORTE_ENTID": {},
-        "PASSANTENFREQUENZENZUERICH_TEST_LIVE": "FALSE",
+        "PASSANTENFREQUENZEN_ZUERICH_TEST_STANDORTE_ENTID": {},
+        "PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("PASSANTENFREQUENZENZUERICH_TEST_LIVE") == "TRUE"
+    live = env.get("PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

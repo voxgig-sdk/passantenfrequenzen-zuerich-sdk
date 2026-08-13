@@ -3,17 +3,17 @@
     "standorte": {
       "STANDORTE00": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "s20"
       },
       "STANDORTE01": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "s3e"
       },
       "STANDORTE02": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "s5c"
       }
     }
@@ -22,7 +22,7 @@
     "standorte": {
       "standorte_ref01": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "s7a"
       }
     }

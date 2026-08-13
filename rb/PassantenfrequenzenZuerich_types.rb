@@ -87,14 +87,14 @@ FrequenzenListMatch = Struct.new(
 # @!attribute [rw] geometry
 #   @return [Hash, nil]
 #
-# @!attribute [rw] property
+# @!attribute [rw] properties
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 Standorte = Struct.new(
   :geometry,
-  :property,
+  :properties,
   :type,
   keyword_init: true
 )
@@ -104,14 +104,14 @@ Standorte = Struct.new(
 # @!attribute [rw] geometry
 #   @return [Hash, nil]
 #
-# @!attribute [rw] property
+# @!attribute [rw] properties
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 StandorteListMatch = Struct.new(
   :geometry,
-  :property,
+  :properties,
   :type,
   keyword_init: true
 )

@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = PassantenfrequenzenZuerichSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = PassantenfrequenzenZuerichSDK.test({
+  entity: {
+    frequenzen: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const frequenzens = await client.Frequenzen().list()
-// frequenzens is an array of bare Frequenzen records populated with mock data
+// frequenzens is an array of Frequenzen entities, populated with mock data
+// — call frequenzens[0].data() for the record itself
 console.log(frequenzens)
 ```
 
@@ -110,7 +119,7 @@ import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-z
 
 const client = new PassantenfrequenzenZuerichSDK()
 
-// List all frequenzens (returns Frequenzen[])
+// List all frequenzens (returns FrequenzenEntity[] — .data() for the record)
 const frequenzens = await client.Frequenzen().list()
 for (const frequenzen of frequenzens) {
   console.log(frequenzen)
@@ -344,6 +353,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://data.stadt-zuerich.ch](https://data.stadt-zuerich.ch)
 

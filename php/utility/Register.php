@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ PassantenfrequenzenZuerichUtility::setRegistrar(function (PassantenfrequenzenZue
     $u->prepare_params = [PassantenfrequenzenZuerichPrepareParams::class, 'call'];
     $u->prepare_path = [PassantenfrequenzenZuerichPreparePath::class, 'call'];
     $u->prepare_query = [PassantenfrequenzenZuerichPrepareQuery::class, 'call'];
+    $u->graphql_body = [PassantenfrequenzenZuerichGraphql::class, 'body'];
+    $u->graphql_errors = [PassantenfrequenzenZuerichGraphql::class, 'errors'];
     $u->result_basic = [PassantenfrequenzenZuerichResultBasic::class, 'call'];
     $u->result_body = [PassantenfrequenzenZuerichResultBody::class, 'call'];
     $u->result_headers = [PassantenfrequenzenZuerichResultHeaders::class, 'call'];

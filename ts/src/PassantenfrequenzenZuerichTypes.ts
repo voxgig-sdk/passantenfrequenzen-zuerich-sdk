@@ -29,13 +29,13 @@ export interface FrequenzenListMatch {
 
 export interface Standorte {
   geometry?: Record<string, any>
-  property?: Record<string, any>
+  properties?: Record<string, any>
   type?: string
 }
 
 export interface StandorteListMatch {
   geometry?: Record<string, any>
-  property?: Record<string, any>
+  properties?: Record<string, any>
   type?: string
 }
 

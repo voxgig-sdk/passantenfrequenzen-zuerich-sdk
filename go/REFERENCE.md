@@ -161,7 +161,7 @@ fmt.Println(standorte.GetName()) // "standorte"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `geometry` | `map[string]any` | No |  |
-| `property` | `map[string]any` | No |  |
+| `properties` | `map[string]any` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

@@ -28,12 +28,12 @@
 
 ---@class Standorte
 ---@field geometry? table
----@field property? table
+---@field properties? table
 ---@field type? string
 
 ---@class StandorteListMatch
 ---@field geometry? table
----@field property? table
+---@field properties? table
 ---@field type? string
 
 local M = {}

@@ -219,9 +219,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local frequenzen, err = client:Frequenzen():load()
+    local frequenzen, err = client:Frequenzen():list()
     if err then error(err) end
-    -- frequenzen is the loaded record
+    -- frequenzen is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -250,7 +250,7 @@ API path: `/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaenger
 | Field | Description |
 | --- | --- |
 | `geometry` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -307,7 +307,7 @@ Create an instance: `local standorte = client:Standorte(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `geometry` | `table` |  |
-| `property` | `table` |  |
+| `properties` | `table` |  |
 | `type` | `string` |  |
 
 #### Example: List

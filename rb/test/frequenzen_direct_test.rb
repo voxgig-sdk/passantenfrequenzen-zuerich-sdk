@@ -60,11 +60,11 @@ def frequenzen_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "PASSANTENFREQUENZENZUERICH_TEST_FREQUENZEN_ENTID" => {},
-    "PASSANTENFREQUENZENZUERICH_TEST_LIVE" => "FALSE",
+    "PASSANTENFREQUENZEN_ZUERICH_TEST_FREQUENZEN_ENTID" => {},
+    "PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE" => "FALSE",
   })
 
-  live = env["PASSANTENFREQUENZENZUERICH_TEST_LIVE"] == "TRUE"
+  live = env["PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

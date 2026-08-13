@@ -129,6 +129,7 @@ module PassantenfrequenzenZuerichConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv",
                   "parts" => [
@@ -170,7 +171,7 @@ module PassantenfrequenzenZuerichConfig
             },
             {
               "active" => true,
-              "name" => "property",
+              "name" => "properties",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 1,
@@ -192,6 +193,7 @@ module PassantenfrequenzenZuerichConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
                   "parts" => [
@@ -203,7 +205,7 @@ module PassantenfrequenzenZuerichConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.features`",
                   },
                   "index$" => 0,
                 },

@@ -37,7 +37,7 @@ class FrequenzenEntity extends PassantenfrequenzenZuerichEntityBase<Frequenzen> 
 
 
 
-  async list(this: any, reqmatch?: FrequenzenListMatch, ctrl?: Control): Promise<Frequenzen[]> {
+  async list(this: any, reqmatch?: FrequenzenListMatch, ctrl?: Control): Promise<FrequenzenEntity[]> {
 
     const utility = this._utility
 
