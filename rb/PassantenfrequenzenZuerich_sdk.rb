@@ -28,7 +28,7 @@ class PassantenfrequenzenZuerichSDK
     utility = PassantenfrequenzenZuerichUtility.new
     @_utility = utility
 
-    config = PassantenfrequenzenZuerichConfig.make_config
+    config = PassantenfrequenzenZuerichConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

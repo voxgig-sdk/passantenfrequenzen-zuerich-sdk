@@ -40,7 +40,7 @@ class PassantenfrequenzenZuerichSDK
         $utility = new PassantenfrequenzenZuerichUtility();
         $this->_utility = $utility;
 
-        $config = PassantenfrequenzenZuerichConfig::make_config();
+        $config = PassantenfrequenzenZuerichConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

@@ -15,7 +15,7 @@ require_relative "../PassantenfrequenzenZuerich_sdk"
 module PassantenfrequenzenZuerichFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = PassantenfrequenzenZuerichConfig.make_config["feature"]
+    f = PassantenfrequenzenZuerichConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

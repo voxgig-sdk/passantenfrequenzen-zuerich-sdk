@@ -40,7 +40,7 @@ class FrequenzenEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = PassantenfrequenzenZuerichConfig::make_config();
+        $cfg = PassantenfrequenzenZuerichConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = PassantenfrequenzenZuerichSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];
