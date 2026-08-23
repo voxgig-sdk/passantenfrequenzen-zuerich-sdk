@@ -232,14 +232,14 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `age_group` |  |
-| `count` |  |
-| `direction` |  |
-| `location` |  |
-| `temperature` |  |
-| `timestamp` |  |
-| `weather` |  |
-| `zone` |  |
+| `age_group` | Altersgruppe |
+| `count` | Anzahl gezählter Passanten |
+| `direction` | Laufrichtung der Passanten |
+| `location` | Name des Messgebiets |
+| `temperature` | Temperatur in Grad Celsius |
+| `timestamp` | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `weather` | Wetterbedingungen während der Messung |
+| `zone` | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 Operations: List.
 
@@ -276,14 +276,14 @@ Create an instance: `local frequenzen = client:Frequenzen(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_group` | `string` |  |
-| `count` | `number` |  |
-| `direction` | `string` |  |
-| `location` | `string` |  |
-| `temperature` | `number` |  |
-| `timestamp` | `string` |  |
-| `weather` | `string` |  |
-| `zone` | `number` |  |
+| `age_group` | `string` | Altersgruppe |
+| `count` | `number` | Anzahl gezählter Passanten |
+| `direction` | `string` | Laufrichtung der Passanten |
+| `location` | `string` | Name des Messgebiets |
+| `temperature` | `number` | Temperatur in Grad Celsius |
+| `timestamp` | `string` | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `weather` | `string` | Wetterbedingungen während der Messung |
+| `zone` | `number` | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 #### Example: List
 

@@ -248,14 +248,14 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `age_group` |  |
-| `count` |  |
-| `direction` |  |
-| `location` |  |
-| `temperature` |  |
-| `timestamp` |  |
-| `weather` |  |
-| `zone` |  |
+| `age_group` | Altersgruppe |
+| `count` | Anzahl gezählter Passanten |
+| `direction` | Laufrichtung der Passanten |
+| `location` | Name des Messgebiets |
+| `temperature` | Temperatur in Grad Celsius |
+| `timestamp` | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `weather` | Wetterbedingungen während der Messung |
+| `zone` | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 Operations: List.
 
@@ -292,14 +292,14 @@ Create an instance: `$frequenzen = $client->Frequenzen();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_group` | `string` |  |
-| `count` | `int` |  |
-| `direction` | `string` |  |
-| `location` | `string` |  |
-| `temperature` | `float` |  |
-| `timestamp` | `string` |  |
-| `weather` | `string` |  |
-| `zone` | `int` |  |
+| `age_group` | `string` | Altersgruppe |
+| `count` | `int` | Anzahl gezählter Passanten |
+| `direction` | `string` | Laufrichtung der Passanten |
+| `location` | `string` | Name des Messgebiets |
+| `temperature` | `float` | Temperatur in Grad Celsius |
+| `timestamp` | `string` | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `weather` | `string` | Wetterbedingungen während der Messung |
+| `zone` | `int` | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 #### Example: List
 

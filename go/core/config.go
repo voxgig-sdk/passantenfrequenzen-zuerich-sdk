@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "PassantenfrequenzenZuerich",
+			"slug": "passantenfrequenzen-zuerich",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,34 +37,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "age_group",
+						"short": "Altersgruppe",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "count",
+						"short": "Anzahl gezählter Passanten",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "direction",
+						"short": "Laufrichtung der Passanten",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "location",
+						"short": "Name des Messgebiets",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "temperature",
+						"short": "Temperatur in Grad Celsius",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Zeitpunkt der Messung in UTC (ISO 8601)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "weather",
+						"short": "Wetterbedingungen während der Messung",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "zone",
+						"short": "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)",
 						"type": "`$INTEGER`",
 					},
 				},

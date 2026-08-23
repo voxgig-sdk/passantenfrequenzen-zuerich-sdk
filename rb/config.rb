@@ -19,6 +19,9 @@ module PassantenfrequenzenZuerichConfig
     {
       "main" => {
         "name" => "PassantenfrequenzenZuerich",
+        "slug" => "passantenfrequenzen-zuerich",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -42,34 +45,42 @@ module PassantenfrequenzenZuerichConfig
           "fields" => [
             {
               "name" => "age_group",
+              "short" => "Altersgruppe",
               "type" => "`$STRING`",
             },
             {
               "name" => "count",
+              "short" => "Anzahl gezählter Passanten",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "direction",
+              "short" => "Laufrichtung der Passanten",
               "type" => "`$STRING`",
             },
             {
               "name" => "location",
+              "short" => "Name des Messgebiets",
               "type" => "`$STRING`",
             },
             {
               "name" => "temperature",
+              "short" => "Temperatur in Grad Celsius",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "timestamp",
+              "short" => "Zeitpunkt der Messung in UTC (ISO 8601)",
               "type" => "`$STRING`",
             },
             {
               "name" => "weather",
+              "short" => "Wetterbedingungen während der Messung",
               "type" => "`$STRING`",
             },
             {
               "name" => "zone",
+              "short" => "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)",
               "type" => "`$INTEGER`",
             },
           ],

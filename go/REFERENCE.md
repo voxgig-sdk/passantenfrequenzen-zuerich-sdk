@@ -102,14 +102,14 @@ fmt.Println(frequenzen.GetName()) // "frequenzen"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_group` | `string` | No |  |
-| `count` | `int` | No |  |
-| `direction` | `string` | No |  |
-| `location` | `string` | No |  |
-| `temperature` | `float64` | No |  |
-| `timestamp` | `string` | No |  |
-| `weather` | `string` | No |  |
-| `zone` | `int` | No |  |
+| `age_group` | `string` | No | Altersgruppe |
+| `count` | `int` | No | Anzahl gezählter Passanten |
+| `direction` | `string` | No | Laufrichtung der Passanten |
+| `location` | `string` | No | Name des Messgebiets |
+| `temperature` | `float64` | No | Temperatur in Grad Celsius |
+| `timestamp` | `string` | No | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `weather` | `string` | No | Wetterbedingungen während der Messung |
+| `zone` | `int` | No | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 ### Operations
 

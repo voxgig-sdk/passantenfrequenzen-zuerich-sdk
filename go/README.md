@@ -6,7 +6,7 @@ The Golang SDK for the PassantenfrequenzenZuerich API — an entity-oriented cli
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Frequenzen(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -261,14 +261,14 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"age_group"` |  |
-| `"count"` |  |
-| `"direction"` |  |
-| `"location"` |  |
-| `"temperature"` |  |
-| `"timestamp"` |  |
-| `"weather"` |  |
-| `"zone"` |  |
+| `"age_group"` | Altersgruppe |
+| `"count"` | Anzahl gezählter Passanten |
+| `"direction"` | Laufrichtung der Passanten |
+| `"location"` | Name des Messgebiets |
+| `"temperature"` | Temperatur in Grad Celsius |
+| `"timestamp"` | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `"weather"` | Wetterbedingungen während der Messung |
+| `"zone"` | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 Operations: List.
 
@@ -305,14 +305,14 @@ Create an instance: `frequenzen := client.Frequenzen(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_group` | `string` |  |
-| `count` | `int` |  |
-| `direction` | `string` |  |
-| `location` | `string` |  |
-| `temperature` | `float64` |  |
-| `timestamp` | `string` |  |
-| `weather` | `string` |  |
-| `zone` | `int` |  |
+| `age_group` | `string` | Altersgruppe |
+| `count` | `int` | Anzahl gezählter Passanten |
+| `direction` | `string` | Laufrichtung der Passanten |
+| `location` | `string` | Name des Messgebiets |
+| `temperature` | `float64` | Temperatur in Grad Celsius |
+| `timestamp` | `string` | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `weather` | `string` | Wetterbedingungen während der Messung |
+| `zone` | `int` | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 #### Example: List
 

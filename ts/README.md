@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -288,14 +288,14 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `age_group` |  |
-| `count` |  |
-| `direction` |  |
-| `location` |  |
-| `temperature` |  |
-| `timestamp` |  |
-| `weather` |  |
-| `zone` |  |
+| `age_group` | Altersgruppe |
+| `count` | Anzahl gezählter Passanten |
+| `direction` | Laufrichtung der Passanten |
+| `location` | Name des Messgebiets |
+| `temperature` | Temperatur in Grad Celsius |
+| `timestamp` | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `weather` | Wetterbedingungen während der Messung |
+| `zone` | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 Operations: list.
 
@@ -332,14 +332,14 @@ Create an instance: `const frequenzen = client.Frequenzen()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_group` | `string` |  |
-| `count` | `number` |  |
-| `direction` | `string` |  |
-| `location` | `string` |  |
-| `temperature` | `number` |  |
-| `timestamp` | `string` |  |
-| `weather` | `string` |  |
-| `zone` | `number` |  |
+| `age_group` | `string` | Altersgruppe |
+| `count` | `number` | Anzahl gezählter Passanten |
+| `direction` | `string` | Laufrichtung der Passanten |
+| `location` | `string` | Name des Messgebiets |
+| `temperature` | `number` | Temperatur in Grad Celsius |
+| `timestamp` | `string` | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `weather` | `string` | Wetterbedingungen während der Messung |
+| `zone` | `number` | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 #### Example: List
 

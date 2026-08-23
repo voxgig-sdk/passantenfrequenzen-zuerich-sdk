@@ -128,14 +128,14 @@ const frequenzen = client.Frequenzen()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_group` | `string` | No |  |
-| `count` | `number` | No |  |
-| `direction` | `string` | No |  |
-| `location` | `string` | No |  |
-| `temperature` | `number` | No |  |
-| `timestamp` | `string` | No |  |
-| `weather` | `string` | No |  |
-| `zone` | `number` | No |  |
+| `age_group` | `string` | No | Altersgruppe |
+| `count` | `number` | No | Anzahl gezählter Passanten |
+| `direction` | `string` | No | Laufrichtung der Passanten |
+| `location` | `string` | No | Name des Messgebiets |
+| `temperature` | `number` | No | Temperatur in Grad Celsius |
+| `timestamp` | `string` | No | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `weather` | `string` | No | Wetterbedingungen während der Messung |
+| `zone` | `number` | No | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 ### Operations
 

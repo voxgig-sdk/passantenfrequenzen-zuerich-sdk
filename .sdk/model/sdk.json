@@ -36,48 +36,56 @@
               "active": true,
               "name": "age_group",
               "req": false,
+              "short": "Altersgruppe",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "count",
               "req": false,
+              "short": "Anzahl gezählter Passanten",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "direction",
               "req": false,
+              "short": "Laufrichtung der Passanten",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "location",
               "req": false,
+              "short": "Name des Messgebiets",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "temperature",
               "req": false,
+              "short": "Temperatur in Grad Celsius",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Zeitpunkt der Messung in UTC (ISO 8601)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "weather",
               "req": false,
+              "short": "Wetterbedingungen während der Messung",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "zone",
               "req": false,
+              "short": "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)",
               "type": "`$INTEGER`"
             }
           ],

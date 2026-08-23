@@ -97,14 +97,14 @@ frequenzen = client.Frequenzen
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_group` | `String` | No |  |
-| `count` | `Integer` | No |  |
-| `direction` | `String` | No |  |
-| `location` | `String` | No |  |
-| `temperature` | `Float` | No |  |
-| `timestamp` | `String` | No |  |
-| `weather` | `String` | No |  |
-| `zone` | `Integer` | No |  |
+| `age_group` | `String` | No | Altersgruppe |
+| `count` | `Integer` | No | Anzahl gezählter Passanten |
+| `direction` | `String` | No | Laufrichtung der Passanten |
+| `location` | `String` | No | Name des Messgebiets |
+| `temperature` | `Float` | No | Temperatur in Grad Celsius |
+| `timestamp` | `String` | No | Zeitpunkt der Messung in UTC (ISO 8601) |
+| `weather` | `String` | No | Wetterbedingungen während der Messung |
+| `zone` | `Integer` | No | Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar) |
 
 ### Operations
 
