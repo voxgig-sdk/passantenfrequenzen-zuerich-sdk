@@ -47,37 +47,21 @@ Frequenzen = Struct.new(
 
 # Request payload for Frequenzen#list.
 #
-# @!attribute [rw] age_group
-#   @return [String, nil]
-#
-# @!attribute [rw] count
-#   @return [Integer, nil]
-#
-# @!attribute [rw] direction
+# @!attribute [rw] end_date
 #   @return [String, nil]
 #
 # @!attribute [rw] location
 #   @return [String, nil]
 #
-# @!attribute [rw] temperature
-#   @return [Float, nil]
-#
-# @!attribute [rw] timestamp
-#   @return [String, nil]
-#
-# @!attribute [rw] weather
+# @!attribute [rw] start_date
 #   @return [String, nil]
 #
 # @!attribute [rw] zone
 #   @return [Integer, nil]
 FrequenzenListMatch = Struct.new(
-  :age_group,
-  :count,
-  :direction,
+  :end_date,
   :location,
-  :temperature,
-  :timestamp,
-  :weather,
+  :start_date,
   :zone,
   keyword_init: true
 )

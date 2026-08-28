@@ -28,13 +28,9 @@ class Frequenzen(TypedDict, total=False):
 
 
 class FrequenzenListMatch(TypedDict, total=False):
-    age_group: str
-    count: int
-    direction: str
+    end_date: str
     location: str
-    temperature: float
-    timestamp: str
-    weather: str
+    start_date: str
     zone: int
 
 

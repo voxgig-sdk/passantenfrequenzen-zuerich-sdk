@@ -17,13 +17,9 @@
 ---@field zone? number
 
 ---@class FrequenzenListMatch
----@field age_group? string
----@field count? number
----@field direction? string
+---@field end_date? string
 ---@field location? string
----@field temperature? number
----@field timestamp? string
----@field weather? string
+---@field start_date? string
 ---@field zone? number
 
 ---@class Standorte

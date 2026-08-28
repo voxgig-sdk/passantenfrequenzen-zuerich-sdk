@@ -26,13 +26,9 @@ type Frequenzen struct {
 
 // FrequenzenListMatch is the typed request payload for Frequenzen.ListTyped.
 type FrequenzenListMatch struct {
-	AgeGroup *string `json:"age_group,omitempty"`
-	Count *int `json:"count,omitempty"`
-	Direction *string `json:"direction,omitempty"`
+	EndDate *string `json:"end_date,omitempty"`
 	Location *string `json:"location,omitempty"`
-	Temperature *float64 `json:"temperature,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
-	Weather *string `json:"weather,omitempty"`
+	StartDate *string `json:"start_date,omitempty"`
 	Zone *int `json:"zone,omitempty"`
 }
 

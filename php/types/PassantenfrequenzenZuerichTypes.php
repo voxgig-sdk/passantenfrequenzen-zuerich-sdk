@@ -28,13 +28,9 @@ class Frequenzen
 /** Request payload for Frequenzen#list. */
 class FrequenzenListMatch
 {
-    public ?string $age_group = null;
-    public ?int $count = null;
-    public ?string $direction = null;
+    public ?string $end_date = null;
     public ?string $location = null;
-    public ?float $temperature = null;
-    public ?string $timestamp = null;
-    public ?string $weather = null;
+    public ?string $start_date = null;
     public ?int $zone = null;
 }
 

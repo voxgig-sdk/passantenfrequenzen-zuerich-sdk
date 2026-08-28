@@ -17,13 +17,9 @@ export interface Frequenzen {
 }
 
 export interface FrequenzenListMatch {
-  age_group?: string
-  count?: number
-  direction?: string
+  end_date?: string
   location?: string
-  temperature?: number
-  timestamp?: string
-  weather?: string
+  start_date?: string
   zone?: number
 }
 
