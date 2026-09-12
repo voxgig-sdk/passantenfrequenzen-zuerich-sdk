@@ -36,6 +36,7 @@ main: kit: entity: frequenzen: {
       type: "`$NUMBER`"
     }
     {
+      format: "date-time"
       name: "timestamp"
       req: false
       short: "Zeitpunkt der Messung in UTC (ISO 8601)"
@@ -97,11 +98,19 @@ main: kit: entity: frequenzen: {
           }
           method: "GET"
           orig: "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv"
-          parts: [
-            "dataset"
-            "hystreet_fussgaengerfrequenzen"
-            "download"
-            "hystreet_fussgaengerfrequenzen_seit2021.csv"
+          segments: [
+            {
+              lit: "dataset"
+            }
+            {
+              lit: "hystreet_fussgaengerfrequenzen"
+            }
+            {
+              lit: "download"
+            }
+            {
+              lit: "hystreet_fussgaengerfrequenzen_seit2021.csv"
+            }
           ]
           select: {
             exist: [

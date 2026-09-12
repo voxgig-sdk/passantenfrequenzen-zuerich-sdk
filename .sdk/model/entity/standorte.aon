@@ -30,11 +30,19 @@ main: kit: entity: standorte: {
         {
           method: "GET"
           orig: "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json"
-          parts: [
-            "dataset"
-            "hystreet_fussgaengerfrequenzen"
-            "download"
-            "hystreet_locations.json"
+          segments: [
+            {
+              lit: "dataset"
+            }
+            {
+              lit: "hystreet_fussgaengerfrequenzen"
+            }
+            {
+              lit: "download"
+            }
+            {
+              lit: "hystreet_locations.json"
+            }
           ]
           transform: {
             req: "`reqdata`"

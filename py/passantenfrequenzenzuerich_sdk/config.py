@@ -1,6 +1,14 @@
 # PassantenfrequenzenZuerich SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -79,6 +87,7 @@ def make_config():
             "type": "`$NUMBER`",
           },
           {
+            "format": "date-time",
             "name": "timestamp",
             "short": "Zeitpunkt der Messung in UTC (ISO 8601)",
             "type": "`$STRING`",
@@ -134,11 +143,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv",
-                "parts": [
-                  "dataset",
-                  "hystreet_fussgaengerfrequenzen",
-                  "download",
-                  "hystreet_fussgaengerfrequenzen_seit2021.csv",
+                "segments": [
+                  {
+                    "lit": "dataset",
+                  },
+                  {
+                    "lit": "hystreet_fussgaengerfrequenzen",
+                  },
+                  {
+                    "lit": "download",
+                  },
+                  {
+                    "lit": "hystreet_fussgaengerfrequenzen_seit2021.csv",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -152,6 +169,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "dataset",
+                  "hystreet_fussgaengerfrequenzen",
+                  "download",
+                  "hystreet_fussgaengerfrequenzen_seit2021.csv",
+                ],
               },
             ],
           },
@@ -186,17 +209,31 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
-                "parts": [
-                  "dataset",
-                  "hystreet_fussgaengerfrequenzen",
-                  "download",
-                  "hystreet_locations.json",
+                "segments": [
+                  {
+                    "lit": "dataset",
+                  },
+                  {
+                    "lit": "hystreet_fussgaengerfrequenzen",
+                  },
+                  {
+                    "lit": "download",
+                  },
+                  {
+                    "lit": "hystreet_locations.json",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.features`",
                 },
+                "parts": [
+                  "dataset",
+                  "hystreet_fussgaengerfrequenzen",
+                  "download",
+                  "hystreet_locations.json",
+                ],
               },
             ],
           },

@@ -62,6 +62,7 @@ func MakeConfig() map[string]any {
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "timestamp",
 						"short": "Zeitpunkt der Messung in UTC (ISO 8601)",
 						"type": "`$STRING`",
@@ -117,11 +118,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv",
-								"parts": []any{
-									"dataset",
-									"hystreet_fussgaengerfrequenzen",
-									"download",
-									"hystreet_fussgaengerfrequenzen_seit2021.csv",
+								"segments": []any{
+									map[string]any{
+										"lit": "dataset",
+									},
+									map[string]any{
+										"lit": "hystreet_fussgaengerfrequenzen",
+									},
+									map[string]any{
+										"lit": "download",
+									},
+									map[string]any{
+										"lit": "hystreet_fussgaengerfrequenzen_seit2021.csv",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -134,6 +143,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"dataset",
+									"hystreet_fussgaengerfrequenzen",
+									"download",
+									"hystreet_fussgaengerfrequenzen_seit2021.csv",
 								},
 							},
 						},
@@ -169,16 +184,30 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
-								"parts": []any{
-									"dataset",
-									"hystreet_fussgaengerfrequenzen",
-									"download",
-									"hystreet_locations.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "dataset",
+									},
+									map[string]any{
+										"lit": "hystreet_fussgaengerfrequenzen",
+									},
+									map[string]any{
+										"lit": "download",
+									},
+									map[string]any{
+										"lit": "hystreet_locations.json",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.features`",
+								},
+								"parts": []any{
+									"dataset",
+									"hystreet_fussgaengerfrequenzen",
+									"download",
+									"hystreet_locations.json",
 								},
 							},
 						},
@@ -190,6 +219,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

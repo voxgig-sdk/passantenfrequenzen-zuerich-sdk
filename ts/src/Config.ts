@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -95,6 +106,7 @@ class Config {
           "type": "`$NUMBER`"
         },
         {
+          "format": "date-time",
           "name": "timestamp",
           "short": "Zeitpunkt der Messung in UTC (ISO 8601)",
           "type": "`$STRING`"
@@ -150,11 +162,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv",
-              "parts": [
-                "dataset",
-                "hystreet_fussgaengerfrequenzen",
-                "download",
-                "hystreet_fussgaengerfrequenzen_seit2021.csv"
+              "segments": [
+                {
+                  "lit": "dataset"
+                },
+                {
+                  "lit": "hystreet_fussgaengerfrequenzen"
+                },
+                {
+                  "lit": "download"
+                },
+                {
+                  "lit": "hystreet_fussgaengerfrequenzen_seit2021.csv"
+                }
               ],
               "select": {
                 "exist": [
@@ -167,7 +187,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "dataset",
+                "hystreet_fussgaengerfrequenzen",
+                "download",
+                "hystreet_fussgaengerfrequenzen_seit2021.csv"
+              ]
             }
           ]
         }
@@ -202,17 +228,31 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
-              "parts": [
-                "dataset",
-                "hystreet_fussgaengerfrequenzen",
-                "download",
-                "hystreet_locations.json"
+              "segments": [
+                {
+                  "lit": "dataset"
+                },
+                {
+                  "lit": "hystreet_fussgaengerfrequenzen"
+                },
+                {
+                  "lit": "download"
+                },
+                {
+                  "lit": "hystreet_locations.json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.features`"
-              }
+              },
+              "parts": [
+                "dataset",
+                "hystreet_fussgaengerfrequenzen",
+                "download",
+                "hystreet_locations.json"
+              ]
             }
           ]
         }
@@ -228,6 +268,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

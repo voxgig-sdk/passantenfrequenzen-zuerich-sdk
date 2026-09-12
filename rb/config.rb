@@ -70,6 +70,7 @@ module PassantenfrequenzenZuerichConfig
               "type" => "`$NUMBER`",
             },
             {
+              "format" => "date-time",
               "name" => "timestamp",
               "short" => "Zeitpunkt der Messung in UTC (ISO 8601)",
               "type" => "`$STRING`",
@@ -125,11 +126,19 @@ module PassantenfrequenzenZuerichConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv",
-                  "parts" => [
-                    "dataset",
-                    "hystreet_fussgaengerfrequenzen",
-                    "download",
-                    "hystreet_fussgaengerfrequenzen_seit2021.csv",
+                  "segments" => [
+                    {
+                      "lit" => "dataset",
+                    },
+                    {
+                      "lit" => "hystreet_fussgaengerfrequenzen",
+                    },
+                    {
+                      "lit" => "download",
+                    },
+                    {
+                      "lit" => "hystreet_fussgaengerfrequenzen_seit2021.csv",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -143,6 +152,12 @@ module PassantenfrequenzenZuerichConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "dataset",
+                    "hystreet_fussgaengerfrequenzen",
+                    "download",
+                    "hystreet_fussgaengerfrequenzen_seit2021.csv",
+                  ],
                 },
               ],
             },
@@ -177,17 +192,31 @@ module PassantenfrequenzenZuerichConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
-                  "parts" => [
-                    "dataset",
-                    "hystreet_fussgaengerfrequenzen",
-                    "download",
-                    "hystreet_locations.json",
+                  "segments" => [
+                    {
+                      "lit" => "dataset",
+                    },
+                    {
+                      "lit" => "hystreet_fussgaengerfrequenzen",
+                    },
+                    {
+                      "lit" => "download",
+                    },
+                    {
+                      "lit" => "hystreet_locations.json",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.features`",
                   },
+                  "parts" => [
+                    "dataset",
+                    "hystreet_fussgaengerfrequenzen",
+                    "download",
+                    "hystreet_locations.json",
+                  ],
                 },
               ],
             },
