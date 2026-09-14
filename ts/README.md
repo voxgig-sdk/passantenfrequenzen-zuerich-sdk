@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-zuerich'
+import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-zuerich-sdk'
 
 const client = new PassantenfrequenzenZuerichSDK()
 ```
@@ -455,7 +455,7 @@ passantenfrequenzen-zuerich/
 Import the SDK from the package root:
 
 ```ts
-import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-zuerich'
+import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-zuerich-sdk'
 ```
 
 ### Entity state

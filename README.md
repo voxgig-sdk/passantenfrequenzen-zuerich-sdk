@@ -105,7 +105,7 @@ local results, err = client:Frequenzen():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
+| TypeScript | `@voxgig-sdk/passantenfrequenzen-zuerich-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
 | Python | `voxgig-sdk-passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
 | PHP | `voxgig-sdk/passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go` | `go get github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Frequenzen():list()
 ### TypeScript
 
 ```ts
-import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-zuerich'
+import { PassantenfrequenzenZuerichSDK } from '@voxgig-sdk/passantenfrequenzen-zuerich-sdk'
 
 const client = new PassantenfrequenzenZuerichSDK()
 
