@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { PassantenfrequenzenZuerichSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('FrequenzenEntity', async () => {
 
     const live = 'TRUE' === process.env.PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE
     for (const op of ['list']) {
-      if (maybeSkipControl(t, 'entityOp', 'frequenzen.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'frequenzen.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set PASSANTENFREQUENZEN_ZUERICH_TEST_FREQUENZEN_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"age_group","req":false,"short":"Altersgruppe","type":"`$STRING`","index$":0},{"active":true,"name":"count","req":false,"short":"Anzahl gezählter Passanten","type":"`$INTEGER`","index$":1},{"active":true,"name":"direction","req":false,"short":"Laufrichtung der Passanten","type":"`$STRING`","index$":2},{"active":true,"name":"location","req":false,"short":"Name des Messgebiets","type":"`$STRING`","index$":3},{"active":true,"name":"temperature","req":false,"short":"Temperatur in Grad Celsius","type":"`$NUMBER`","index$":4},{"active":true,"format":"date-time","name":"timestamp","req":false,"short":"Zeitpunkt der Messung in UTC (ISO 8601)","type":"`$STRING`","index$":5},{"active":true,"name":"weather","req":false,"short":"Wetterbedingungen während der Messung","type":"`$STRING`","index$":6},{"active":true,"name":"zone","req":false,"short":"Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)","type":"`$INTEGER`","index$":7}],"name":"frequenzen","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"example":"2023-12-31T23:59:59Z","kind":"query","name":"end_date","orig":"end_date","reqd":false,"type":"`$STRING`","index$":0},{"active":true,"kind":"query","name":"location","orig":"location","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"example":"2023-01-01T00:00:00Z","kind":"query","name":"start_date","orig":"start_date","reqd":false,"type":"`$STRING`","index$":2},{"active":true,"kind":"query","name":"zone","orig":"zone","reqd":false,"type":"`$INTEGER`","index$":3}]},"contract":{"id":"GET /dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv","json":"{\"operationId\":\"getPedestrianFrequencies\",\"parameters\":[{\"description\":\"Startdatum für den Abfragezeitraum (ISO 8601 Format, UTC)\",\"in\":\"query\",\"name\":\"start_date\",\"required\":false,\"schema\":{\"example\":\"2023-01-01T00:00:00Z\",\"format\":\"date-time\",\"type\":\"string\"}},{\"description\":\"Enddatum für den Abfragezeitraum (ISO 8601 Format, UTC)\",\"in\":\"query\",\"name\":\"end_date\",\"required\":false,\"schema\":{\"example\":\"2023-12-31T23:59:59Z\",\"format\":\"date-time\",\"type\":\"string\"}},{\"description\":\"Filtert nach spezifischem Messgebiet\",\"in\":\"query\",\"name\":\"location\",\"required\":false,\"schema\":{\"enum\":[\"Bahnhofstrasse (Nord)\",\"Bahnhofstrasse (Mitte)\",\"Bahnhofstrasse (Süd)\",\"Lintheschergasse\"],\"type\":\"string\"}},{\"description\":\"Filtert nach Zone (1, 2, 3 oder 99 für nicht zuordenbar)\",\"in\":\"query\",\"name\":\"zone\",\"required\":false,\"schema\":{\"enum\":[1,2,3,99],\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"age_group\":{\"description\":\"Altersgruppe\",\"enum\":[\"Erwachsene\",\"Kinder\"],\"example\":\"Erwachsene\",\"type\":\"string\"},\"count\":{\"description\":\"Anzahl gezählter Passanten\",\"example\":245,\"type\":\"integer\"},\"direction\":{\"description\":\"Laufrichtung der Passanten\",\"enum\":[\"Bürkliplatz\",\"Hauptbahnhof\"],\"example\":\"Hauptbahnhof\",\"type\":\"string\"},\"location\":{\"description\":\"Name des Messgebiets\",\"example\":\"Bahnhofstrasse (Nord)\",\"type\":\"string\"},\"temperature\":{\"description\":\"Temperatur in Grad Celsius\",\"example\":22.5,\"type\":\"number\"},\"timestamp\":{\"description\":\"Zeitpunkt der Messung in UTC (ISO 8601)\",\"example\":\"2023-06-15T14:00:00Z\",\"format\":\"date-time\",\"type\":\"string\"},\"weather\":{\"description\":\"Wetterbedingungen während der Messung\",\"example\":\"sonnig\",\"type\":\"string\"},\"zone\":{\"description\":\"Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)\",\"example\":1,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"text/csv\":{\"schema\":{\"description\":\"CSV-Datei mit Passantenfrequenzen\",\"type\":\"string\"}}},\"description\":\"Erfolgreiche Antwort mit Frequenzdaten\"},\"400\":{\"description\":\"Ungültige Anfrageparameter\"},\"404\":{\"description\":\"Ressource nicht gefunden\"},\"500\":{\"description\":\"Interner Serverfehler\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv","segments":[{"lit":"dataset"},{"lit":"hystreet_fussgaengerfrequenzen"},{"lit":"download"},{"lit":"hystreet_fussgaengerfrequenzen_seit2021.csv"}],"select":{"exist":["end_date","location","start_date","zone"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"frequenzen","name__orig":"frequenzen","Name":"Frequenzen","name_":"frequenzen","name-":"frequenzen","NAME":"FREQUENZEN","index$":0}, {"active":true,"entity":"frequenzen","key$":"BasicFrequenzenFlow","kind":"basic","name":"BasicFrequenzenFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"frequenzen_ref01"}}],"index$":0}]}, 'Frequenzen')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['PASSANTENFREQUENZEN_ZUERICH_TEST_FREQUENZEN_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'PASSANTENFREQUENZEN_ZUERICH_TEST_FREQUENZEN_ENTID': idmap,
     'PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.PASSANTENFREQUENZEN_ZUERICH_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['PASSANTENFREQUENZEN_ZUERICH_TEST_FREQUENZEN_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new PassantenfrequenzenZuerichSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.PASSANTENFREQUENZEN_ZUERICH_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

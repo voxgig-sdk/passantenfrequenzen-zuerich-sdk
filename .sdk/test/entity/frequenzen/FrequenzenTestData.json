@@ -3,33 +3,33 @@
     "frequenzen": {
       "FREQUENZEN00": {
         "age_group": "s50",
-        "count": "s51",
+        "count": 81,
         "direction": "s52",
         "location": "s53",
         "temperature": 84,
         "timestamp": "s55",
         "weather": "s56",
-        "zone": "s57"
+        "zone": 87
       },
       "FREQUENZEN01": {
         "age_group": "sa0",
-        "count": "sa1",
+        "count": 161,
         "direction": "sa2",
         "location": "sa3",
         "temperature": 164,
         "timestamp": "sa5",
         "weather": "sa6",
-        "zone": "sa7"
+        "zone": 167
       },
       "FREQUENZEN02": {
         "age_group": "sf0",
-        "count": "sf1",
+        "count": 241,
         "direction": "sf2",
         "location": "sf3",
         "temperature": 244,
         "timestamp": "sf5",
         "weather": "sf6",
-        "zone": "sf7"
+        "zone": 247
       }
     }
   },
@@ -37,13 +37,158 @@
     "frequenzen": {
       "frequenzen_ref01": {
         "age_group": "s140",
-        "count": "s141",
+        "count": 321,
         "direction": "s142",
         "location": "s143",
         "temperature": 324,
         "timestamp": "s145",
         "weather": "s146",
-        "zone": "s147"
+        "zone": 327
+      }
+    }
+  },
+  "requests": {
+    "GET /dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPedestrianFrequencies",
+        "parameters": [
+          {
+            "description": "Startdatum für den Abfragezeitraum (ISO 8601 Format, UTC)",
+            "in": "query",
+            "name": "start_date",
+            "required": false,
+            "schema": {
+              "example": "2023-01-01T00:00:00Z",
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Enddatum für den Abfragezeitraum (ISO 8601 Format, UTC)",
+            "in": "query",
+            "name": "end_date",
+            "required": false,
+            "schema": {
+              "example": "2023-12-31T23:59:59Z",
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filtert nach spezifischem Messgebiet",
+            "in": "query",
+            "name": "location",
+            "required": false,
+            "schema": {
+              "enum": [
+                "Bahnhofstrasse (Nord)",
+                "Bahnhofstrasse (Mitte)",
+                "Bahnhofstrasse (Süd)",
+                "Lintheschergasse"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filtert nach Zone (1, 2, 3 oder 99 für nicht zuordenbar)",
+            "in": "query",
+            "name": "zone",
+            "required": false,
+            "schema": {
+              "enum": [
+                1,
+                2,
+                3,
+                99
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "age_group": {
+                        "description": "Altersgruppe",
+                        "enum": [
+                          "Erwachsene",
+                          "Kinder"
+                        ],
+                        "example": "Erwachsene",
+                        "type": "string"
+                      },
+                      "count": {
+                        "description": "Anzahl gezählter Passanten",
+                        "example": 245,
+                        "type": "integer"
+                      },
+                      "direction": {
+                        "description": "Laufrichtung der Passanten",
+                        "enum": [
+                          "Bürkliplatz",
+                          "Hauptbahnhof"
+                        ],
+                        "example": "Hauptbahnhof",
+                        "type": "string"
+                      },
+                      "location": {
+                        "description": "Name des Messgebiets",
+                        "example": "Bahnhofstrasse (Nord)",
+                        "type": "string"
+                      },
+                      "temperature": {
+                        "description": "Temperatur in Grad Celsius",
+                        "example": 22.5,
+                        "type": "number"
+                      },
+                      "timestamp": {
+                        "description": "Zeitpunkt der Messung in UTC (ISO 8601)",
+                        "example": "2023-06-15T14:00:00Z",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "weather": {
+                        "description": "Wetterbedingungen während der Messung",
+                        "example": "sonnig",
+                        "type": "string"
+                      },
+                      "zone": {
+                        "description": "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)",
+                        "example": 1,
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "description": "CSV-Datei mit Passantenfrequenzen",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Erfolgreiche Antwort mit Frequenzdaten"
+          },
+          "400": {
+            "description": "Ungültige Anfrageparameter"
+          },
+          "404": {
+            "description": "Ressource nicht gefunden"
+          },
+          "500": {
+            "description": "Interner Serverfehler"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

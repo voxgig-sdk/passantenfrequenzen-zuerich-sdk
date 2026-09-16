@@ -4,7 +4,10 @@ declare(strict_types=1);
 // PassantenfrequenzenZuerich SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class PassantenfrequenzenZuerichFeatures
@@ -14,8 +17,14 @@ class PassantenfrequenzenZuerichFeatures
         switch ($name) {
             case "base":
                 return new PassantenfrequenzenZuerichBaseFeature();
+            case "ratelimit":
+                return new PassantenfrequenzenZuerichRatelimitFeature();
+            case "retry":
+                return new PassantenfrequenzenZuerichRetryFeature();
             case "test":
                 return new PassantenfrequenzenZuerichTestFeature();
+            case "timeout":
+                return new PassantenfrequenzenZuerichTimeoutFeature();
             default:
                 return new PassantenfrequenzenZuerichBaseFeature();
         }
@@ -31,7 +40,10 @@ class PassantenfrequenzenZuerichFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

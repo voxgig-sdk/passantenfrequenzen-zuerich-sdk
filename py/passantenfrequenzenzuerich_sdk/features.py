@@ -1,12 +1,18 @@
 # PassantenfrequenzenZuerich SDK feature factory
 
 from passantenfrequenzenzuerich_sdk.feature.base_feature import PassantenfrequenzenZuerichBaseFeature
+from passantenfrequenzenzuerich_sdk.feature.ratelimit_feature import PassantenfrequenzenZuerichRatelimitFeature
+from passantenfrequenzenzuerich_sdk.feature.retry_feature import PassantenfrequenzenZuerichRetryFeature
 from passantenfrequenzenzuerich_sdk.feature.test_feature import PassantenfrequenzenZuerichTestFeature
+from passantenfrequenzenzuerich_sdk.feature.timeout_feature import PassantenfrequenzenZuerichTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: PassantenfrequenzenZuerichBaseFeature(),
+    "ratelimit": lambda: PassantenfrequenzenZuerichRatelimitFeature(),
+    "retry": lambda: PassantenfrequenzenZuerichRetryFeature(),
     "test": lambda: PassantenfrequenzenZuerichTestFeature(),
+    "timeout": lambda: PassantenfrequenzenZuerichTimeoutFeature(),
 }
 
 
