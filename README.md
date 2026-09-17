@@ -105,12 +105,12 @@ local results, err = client:Frequenzen():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/passantenfrequenzen-zuerich-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
-| Python | `voxgig-sdk-passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
-| PHP | `voxgig-sdk/passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
+| TypeScript | `@voxgig-sdk/passantenfrequenzen-zuerich-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/tags) |
+| Python | `voxgig-sdk-passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/tags) |
+| PHP | `voxgig-sdk/passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go` | `go get github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go@latest` |
-| Ruby | `voxgig-sdk-passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
-| Lua | `voxgig-sdk-passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/releases) |
+| Ruby | `voxgig-sdk-passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/tags) |
+| Lua | `voxgig-sdk-passantenfrequenzen-zuerich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go-cli` | `go install github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go-cli/cmd/passantenfrequenzen-zuerich@latest` |
 | Go MCP server | `github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go-mcp` | `go get github.com/voxgig-sdk/passantenfrequenzen-zuerich-sdk/go-mcp@latest` |
 

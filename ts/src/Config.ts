@@ -127,12 +127,12 @@ class Config {
 
     entity: {
       
-      frequenzen: {
-      },
-
-      standorte: {
-      },
-
+        frequenzen: {
+        },
+  
+        standorte: {
+        },
+  
     }
   }
 

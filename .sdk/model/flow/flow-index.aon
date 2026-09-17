@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicFrequenzenFlow.aon"
-@"BasicStandorteFlow.aon"
+@"./BasicFrequenzenFlow.aon"
+@"./BasicStandorteFlow.aon"

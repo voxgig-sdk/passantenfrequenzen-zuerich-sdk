@@ -1,4 +1,4 @@
 # Entity Models
 
-@"frequenzen.aon"
-@"standorte.aon"
+@"./frequenzen.aon"
+@"./standorte.aon"
