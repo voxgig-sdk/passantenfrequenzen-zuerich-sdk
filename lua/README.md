@@ -43,7 +43,7 @@ local frequenzens, err = client:Frequenzen():list()
 if err then error(err) end
 
 for _, item in ipairs(frequenzens) do
-  print(item["age_group"])
+  print(item)
 end
 ```
 

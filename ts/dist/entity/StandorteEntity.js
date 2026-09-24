@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StandorteEntity = void 0;
 const PassantenfrequenzenZuerichEntityBase_1 = require("../PassantenfrequenzenZuerichEntityBase");
-// TODO: needs Entity superclass
 class StandorteEntity extends PassantenfrequenzenZuerichEntityBase_1.PassantenfrequenzenZuerichEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

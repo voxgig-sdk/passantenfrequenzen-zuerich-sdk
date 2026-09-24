@@ -92,44 +92,52 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "age_group",
-						"short": "Altersgruppe",
+						"title": "Age Group",
 						"type": "`$STRING`",
+						"short": "Altersgruppe",
 					},
 					map[string]any{
 						"name": "count",
-						"short": "Anzahl gezählter Passanten",
+						"title": "Count",
 						"type": "`$INTEGER`",
+						"short": "Anzahl gezählter Passanten",
 					},
 					map[string]any{
 						"name": "direction",
-						"short": "Laufrichtung der Passanten",
+						"title": "Direction",
 						"type": "`$STRING`",
+						"short": "Laufrichtung der Passanten",
 					},
 					map[string]any{
 						"name": "location",
-						"short": "Name des Messgebiets",
+						"title": "Location",
 						"type": "`$STRING`",
+						"short": "Name des Messgebiets",
 					},
 					map[string]any{
 						"name": "temperature",
-						"short": "Temperatur in Grad Celsius",
+						"title": "Temperature",
 						"type": "`$NUMBER`",
+						"short": "Temperatur in Grad Celsius",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "timestamp",
-						"short": "Zeitpunkt der Messung in UTC (ISO 8601)",
+						"title": "Timestamp",
 						"type": "`$STRING`",
+						"short": "Zeitpunkt der Messung in UTC (ISO 8601)",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "weather",
-						"short": "Wetterbedingungen während der Messung",
+						"title": "Weather",
 						"type": "`$STRING`",
+						"short": "Wetterbedingungen während der Messung",
 					},
 					map[string]any{
 						"name": "zone",
-						"short": "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)",
+						"title": "Zone",
 						"type": "`$INTEGER`",
+						"short": "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)",
 					},
 				},
 				"name": "frequenzen",
@@ -139,36 +147,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "2023-12-31T23:59:59Z",
-											"kind": "query",
-											"name": "end_date",
-											"orig": "end_date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "location",
-											"orig": "location",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "2023-01-01T00:00:00Z",
-											"kind": "query",
-											"name": "start_date",
-											"orig": "start_date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "zone",
-											"orig": "zone",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv",
@@ -186,6 +164,47 @@ func MakeConfig() map[string]any {
 										"lit": "hystreet_fussgaengerfrequenzen_seit2021.csv",
 									},
 								},
+								"parts": []any{
+									"dataset",
+									"hystreet_fussgaengerfrequenzen",
+									"download",
+									"hystreet_fussgaengerfrequenzen_seit2021.csv",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "end_date",
+											"orig": "end_date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "2023-12-31T23:59:59Z",
+										},
+										map[string]any{
+											"name": "location",
+											"orig": "location",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "start_date",
+											"orig": "start_date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "2023-01-01T00:00:00Z",
+										},
+										map[string]any{
+											"name": "zone",
+											"orig": "zone",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"end_date",
@@ -193,16 +212,6 @@ func MakeConfig() map[string]any {
 										"start_date",
 										"zone",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"dataset",
-									"hystreet_fussgaengerfrequenzen",
-									"download",
-									"hystreet_fussgaengerfrequenzen_seit2021.csv",
 								},
 							},
 						},
@@ -216,14 +225,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "geometry",
+						"title": "Geometry",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "properties",
+						"title": "Properties",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "type",
+						"title": "Type",
 						"type": "`$STRING`",
 					},
 				},
@@ -234,7 +246,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
@@ -252,17 +263,19 @@ func MakeConfig() map[string]any {
 										"lit": "hystreet_locations.json",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.features`",
-								},
 								"parts": []any{
 									"dataset",
 									"hystreet_fussgaengerfrequenzen",
 									"download",
 									"hystreet_locations.json",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.features`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},

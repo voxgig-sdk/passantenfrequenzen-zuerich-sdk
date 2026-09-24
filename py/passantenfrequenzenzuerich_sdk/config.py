@@ -117,44 +117,52 @@ def make_config():
         "fields": [
           {
             "name": "age_group",
-            "short": "Altersgruppe",
+            "title": "Age Group",
             "type": "`$STRING`",
+            "short": "Altersgruppe",
           },
           {
             "name": "count",
-            "short": "Anzahl gezählter Passanten",
+            "title": "Count",
             "type": "`$INTEGER`",
+            "short": "Anzahl gezählter Passanten",
           },
           {
             "name": "direction",
-            "short": "Laufrichtung der Passanten",
+            "title": "Direction",
             "type": "`$STRING`",
+            "short": "Laufrichtung der Passanten",
           },
           {
             "name": "location",
-            "short": "Name des Messgebiets",
+            "title": "Location",
             "type": "`$STRING`",
+            "short": "Name des Messgebiets",
           },
           {
             "name": "temperature",
-            "short": "Temperatur in Grad Celsius",
+            "title": "Temperature",
             "type": "`$NUMBER`",
+            "short": "Temperatur in Grad Celsius",
           },
           {
-            "format": "date-time",
             "name": "timestamp",
-            "short": "Zeitpunkt der Messung in UTC (ISO 8601)",
+            "title": "Timestamp",
             "type": "`$STRING`",
+            "short": "Zeitpunkt der Messung in UTC (ISO 8601)",
+            "format": "date-time",
           },
           {
             "name": "weather",
-            "short": "Wetterbedingungen während der Messung",
+            "title": "Weather",
             "type": "`$STRING`",
+            "short": "Wetterbedingungen während der Messung",
           },
           {
             "name": "zone",
-            "short": "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)",
+            "title": "Zone",
             "type": "`$INTEGER`",
+            "short": "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)",
           },
         ],
         "name": "frequenzen",
@@ -164,36 +172,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "2023-12-31T23:59:59Z",
-                      "kind": "query",
-                      "name": "end_date",
-                      "orig": "end_date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "location",
-                      "orig": "location",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "2023-01-01T00:00:00Z",
-                      "kind": "query",
-                      "name": "start_date",
-                      "orig": "start_date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "zone",
-                      "orig": "zone",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv",
@@ -211,6 +189,47 @@ def make_config():
                     "lit": "hystreet_fussgaengerfrequenzen_seit2021.csv",
                   },
                 ],
+                "parts": [
+                  "dataset",
+                  "hystreet_fussgaengerfrequenzen",
+                  "download",
+                  "hystreet_fussgaengerfrequenzen_seit2021.csv",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "end_date",
+                      "orig": "end_date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "2023-12-31T23:59:59Z",
+                    },
+                    {
+                      "name": "location",
+                      "orig": "location",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "start_date",
+                      "orig": "start_date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "2023-01-01T00:00:00Z",
+                    },
+                    {
+                      "name": "zone",
+                      "orig": "zone",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "end_date",
@@ -219,16 +238,6 @@ def make_config():
                     "zone",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "dataset",
-                  "hystreet_fussgaengerfrequenzen",
-                  "download",
-                  "hystreet_fussgaengerfrequenzen_seit2021.csv",
-                ],
               },
             ],
           },
@@ -241,14 +250,17 @@ def make_config():
         "fields": [
           {
             "name": "geometry",
+            "title": "Geometry",
             "type": "`$OBJECT`",
           },
           {
             "name": "properties",
+            "title": "Properties",
             "type": "`$OBJECT`",
           },
           {
             "name": "type",
+            "title": "Type",
             "type": "`$STRING`",
           },
         ],
@@ -259,7 +271,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
@@ -277,17 +288,19 @@ def make_config():
                     "lit": "hystreet_locations.json",
                   },
                 ],
-                "select": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.features`",
-                },
                 "parts": [
                   "dataset",
                   "hystreet_fussgaengerfrequenzen",
                   "download",
                   "hystreet_locations.json",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.features`",
+                },
+                "args": {},
+                "select": {},
               },
             ],
           },

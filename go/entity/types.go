@@ -1,7 +1,7 @@
 // Typed models for the PassantenfrequenzenZuerich SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,14 +14,6 @@ import (
 
 // Frequenzen is the typed data model for the frequenzen entity.
 type Frequenzen struct {
-	AgeGroup *string `json:"age_group,omitempty"`
-	Count *int `json:"count,omitempty"`
-	Direction *string `json:"direction,omitempty"`
-	Location *string `json:"location,omitempty"`
-	Temperature *float64 `json:"temperature,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
-	Weather *string `json:"weather,omitempty"`
-	Zone *int `json:"zone,omitempty"`
 }
 
 // FrequenzenListMatch is the typed request payload for Frequenzen.ListTyped.
@@ -34,9 +26,6 @@ type FrequenzenListMatch struct {
 
 // Standorte is the typed data model for the standorte entity.
 type Standorte struct {
-	Geometry *map[string]any `json:"geometry,omitempty"`
-	Properties *map[string]any `json:"properties,omitempty"`
-	Type *string `json:"type,omitempty"`
 }
 
 // StandorteListMatch is the typed request payload for Standorte.ListTyped.

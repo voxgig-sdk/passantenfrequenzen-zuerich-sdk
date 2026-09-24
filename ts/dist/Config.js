@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -115,44 +108,52 @@ class Config {
             "fields": [
                 {
                     "name": "age_group",
-                    "short": "Altersgruppe",
-                    "type": "`$STRING`"
+                    "title": "Age Group",
+                    "type": "`$STRING`",
+                    "short": "Altersgruppe"
                 },
                 {
                     "name": "count",
-                    "short": "Anzahl gezählter Passanten",
-                    "type": "`$INTEGER`"
+                    "title": "Count",
+                    "type": "`$INTEGER`",
+                    "short": "Anzahl gezählter Passanten"
                 },
                 {
                     "name": "direction",
-                    "short": "Laufrichtung der Passanten",
-                    "type": "`$STRING`"
+                    "title": "Direction",
+                    "type": "`$STRING`",
+                    "short": "Laufrichtung der Passanten"
                 },
                 {
                     "name": "location",
-                    "short": "Name des Messgebiets",
-                    "type": "`$STRING`"
+                    "title": "Location",
+                    "type": "`$STRING`",
+                    "short": "Name des Messgebiets"
                 },
                 {
                     "name": "temperature",
-                    "short": "Temperatur in Grad Celsius",
-                    "type": "`$NUMBER`"
+                    "title": "Temperature",
+                    "type": "`$NUMBER`",
+                    "short": "Temperatur in Grad Celsius"
                 },
                 {
-                    "format": "date-time",
                     "name": "timestamp",
+                    "title": "Timestamp",
+                    "type": "`$STRING`",
                     "short": "Zeitpunkt der Messung in UTC (ISO 8601)",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
                     "name": "weather",
-                    "short": "Wetterbedingungen während der Messung",
-                    "type": "`$STRING`"
+                    "title": "Weather",
+                    "type": "`$STRING`",
+                    "short": "Wetterbedingungen während der Messung"
                 },
                 {
                     "name": "zone",
-                    "short": "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)",
-                    "type": "`$INTEGER`"
+                    "title": "Zone",
+                    "type": "`$INTEGER`",
+                    "short": "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)"
                 }
             ],
             "name": "frequenzen",
@@ -162,36 +163,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "2023-12-31T23:59:59Z",
-                                        "kind": "query",
-                                        "name": "end_date",
-                                        "orig": "end_date",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "location",
-                                        "orig": "location",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "2023-01-01T00:00:00Z",
-                                        "kind": "query",
-                                        "name": "start_date",
-                                        "orig": "start_date",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "zone",
-                                        "orig": "zone",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv",
@@ -209,6 +180,47 @@ class Config {
                                     "lit": "hystreet_fussgaengerfrequenzen_seit2021.csv"
                                 }
                             ],
+                            "parts": [
+                                "dataset",
+                                "hystreet_fussgaengerfrequenzen",
+                                "download",
+                                "hystreet_fussgaengerfrequenzen_seit2021.csv"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "end_date",
+                                        "orig": "end_date",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "2023-12-31T23:59:59Z"
+                                    },
+                                    {
+                                        "name": "location",
+                                        "orig": "location",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "start_date",
+                                        "orig": "start_date",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "2023-01-01T00:00:00Z"
+                                    },
+                                    {
+                                        "name": "zone",
+                                        "orig": "zone",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "end_date",
@@ -216,17 +228,7 @@ class Config {
                                     "start_date",
                                     "zone"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "dataset",
-                                "hystreet_fussgaengerfrequenzen",
-                                "download",
-                                "hystreet_fussgaengerfrequenzen_seit2021.csv"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -239,14 +241,17 @@ class Config {
             "fields": [
                 {
                     "name": "geometry",
+                    "title": "Geometry",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "properties",
+                    "title": "Properties",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "type",
+                    "title": "Type",
                     "type": "`$STRING`"
                 }
             ],
@@ -257,7 +262,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_locations.json",
@@ -275,17 +279,19 @@ class Config {
                                     "lit": "hystreet_locations.json"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.features`"
-                            },
                             "parts": [
                                 "dataset",
                                 "hystreet_fussgaengerfrequenzen",
                                 "download",
                                 "hystreet_locations.json"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.features`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }

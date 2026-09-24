@@ -1,0 +1,147 @@
+# Entity: frequenzen
+
+main: kit: entity: frequenzen: {
+
+  alias: field: {}
+
+  fields: {
+    age_group: {
+      h: "Age Group"
+      n: "age_group"
+      r: false
+      sh: "Altersgruppe"
+      t: "`$STRING`"
+    }
+    count: {
+      h: "Count"
+      n: "count"
+      r: false
+      sh: "Anzahl gezählter Passanten"
+      t: "`$INTEGER`"
+    }
+    direction: {
+      h: "Direction"
+      n: "direction"
+      r: false
+      sh: "Laufrichtung der Passanten"
+      t: "`$STRING`"
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: false
+      sh: "Name des Messgebiets"
+      t: "`$STRING`"
+    }
+    temperature: {
+      h: "Temperature"
+      n: "temperature"
+      r: false
+      sh: "Temperatur in Grad Celsius"
+      t: "`$NUMBER`"
+    }
+    timestamp: {
+      fo: "date-time"
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Zeitpunkt der Messung in UTC (ISO 8601)"
+      t: "`$STRING`"
+    }
+    weather: {
+      h: "Weather"
+      n: "weather"
+      r: false
+      sh: "Wetterbedingungen während der Messung"
+      t: "`$STRING`"
+    }
+    zone: {
+      h: "Zone"
+      n: "zone"
+      r: false
+      sh: "Zone (1-3 für Bürgersteigseiten/Mitte, 99 für nicht zuordenbar)"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "frequenzen"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "2023-12-31T23:59:59Z"
+                k: "query"
+                n: "end_date"
+                or: "end_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "location"
+                or: "location"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "2023-01-01T00:00:00Z"
+                k: "query"
+                n: "start_date"
+                or: "start_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "zone"
+                or: "zone"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/dataset/hystreet_fussgaengerfrequenzen/download/hystreet_fussgaengerfrequenzen_seit2021.csv"
+          q: {
+            exist: [
+              "end_date"
+              "location"
+              "start_date"
+              "zone"
+            ]
+          }
+          s: [
+            {
+              lit: "dataset"
+            }
+            {
+              lit: "hystreet_fussgaengerfrequenzen"
+            }
+            {
+              lit: "download"
+            }
+            {
+              lit: "hystreet_fussgaengerfrequenzen_seit2021.csv"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

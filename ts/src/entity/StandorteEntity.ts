@@ -19,7 +19,6 @@ import type {
   StandorteListMatch,
 } from '../PassantenfrequenzenZuerichTypes'
 
-// TODO: needs Entity superclass
 class StandorteEntity extends PassantenfrequenzenZuerichEntityBase<Standorte> {
 
   constructor(client: PassantenfrequenzenZuerichSDK, entopts: any) {
