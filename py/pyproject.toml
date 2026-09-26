@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "voxgig-sdk-passantenfrequenzen-zuerich"
+name = "voxgig-sdk-passantenfrequenzen-zuerich-sdk"
 version = "0.0.1"
 description = "Unofficial generated Python SDK for the Passantenfrequenzen Zürich public API. Not affiliated with or endorsed by the upstream API provider."
 readme = "README.md"
